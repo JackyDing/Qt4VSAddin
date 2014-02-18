@@ -1,0 +1,6 @@
+LIBRARY "Qt4VSVisualizer"
+
+EXPORTS
+
+RemoveQt4Visualizer
+AppendQt4Visualizer

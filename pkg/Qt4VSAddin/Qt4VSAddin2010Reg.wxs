@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+    <DirectoryRef Id="TARGETDIR">
+      <Component Id="cmpCBF4A0DEC98BCA0755B2196DB578B595" Guid="{07A28675-CBC2-4BC3-9820-8E25C3F27D9F}">
+        <RegistryKey Key="Software\Microsoft\VisualStudio\10.0\AutomationOptions\LookInFolders" Root="HKLM">
+          <RegistryValue Name="[dirA5E894863CB6F1F770D66B93F6E31836]" Value="" Type="string" />
+        </RegistryKey>
+      </Component>
+      <Component Id="cmp15AEC25F6B0D7B7E6BC1F7C126855FBE" Guid="{6B980F27-C13D-4B9C-AF63-C95DED521510}">
+        <RegistryKey Key="Software\Microsoft\VisualStudio\10.0\NewProjectTemplates\TemplateDirs\{6A7385B4-1D62-46e0-A4E3-AED4475371F0}" Root="HKLM" />
+      </Component>
+      <Component Id="cmpEABF2EB4F1565CFFDF0DCA6F0FFFA424" Guid="{6725E825-2A10-4459-BECB-8E176E66185C}">
+        <RegistryKey Key="Software\Microsoft\VisualStudio\10.0\NewProjectTemplates\TemplateDirs\{6A7385B4-1D62-46e0-A4E3-AED4475371F0}\/1" Root="HKLM">
+          <RegistryValue Value="Qt4 Projects" Type="string" />
+          <RegistryValue Name="SortPriority" Value="16" Type="integer" />
+          <RegistryValue Name="TemplatesDir" Value="[dirF929A1BEC0ADF1B8CD2C56B27E5A4BE5]" Type="string" />
+        </RegistryKey>
+      </Component>
+      <Component Id="cmpE2D828D3198942AEBDC8AF20CBAE7D4E" Guid="{E761A50B-888D-42B4-9FE9-39E8357A8783}">
+        <RegistryKey Key="Software\Microsoft\VisualStudio\10.0\NewProjectTemplates\TemplateDirs\{6A7385B4-1D62-46e0-A4E3-AED4475371F0}\/2" Root="HKLM">
+          <RegistryValue Name="SortPriority" Value="16" Type="integer" />
+        </RegistryKey>
+      </Component>
+      <Component Id="cmpAF7BDF6F0EDEEEEF7FF08A0C37B01D89" Guid="{3E68C174-C804-4137-B190-ADD31A87F125}">
+        <RegistryKey Key="Software\Microsoft\VisualStudio\10.0\Projects\{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}\AddItemTemplates\TemplateDirs\{6A7385B4-1D62-46e0-A4E3-AED4475371F0}" Root="HKLM" />
+      </Component>
+      <Component Id="cmp6F8B1F0DFD11CE44EDEBA00A88031C10" Guid="{FAF185EF-6B6F-447D-97A1-24E11DE3917F}">
+        <RegistryKey Key="Software\Microsoft\VisualStudio\10.0\Projects\{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}\AddItemTemplates\TemplateDirs\{6A7385B4-1D62-46e0-A4E3-AED4475371F0}\/1" Root="HKLM">
+          <RegistryValue Value="Qt Forms" Type="string" />
+          <RegistryValue Name="TemplatesDir" Value="[dir491E8E0B662FD36AD89F082720275A81]" Type="string" />
+          <RegistryValue Name="SortPriority" Value="16" Type="integer" />
+        </RegistryKey>
+      </Component>
+      <Component Id="cmpE78A2032D2F181E61C0F4657C7D79DD0" Guid="{394B7283-A495-4FCF-AC75-87902A74B440}">
+        <RegistryKey Key="Software\Microsoft\VisualStudio\10.0\Projects\{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}\AddItemTemplates\TemplateDirs\{6A7385B4-1D62-46e0-A4E3-AED4475371F0}\/2" Root="HKLM">
+          <RegistryValue Value="Qt Resources" Type="string" />
+          <RegistryValue Name="TemplatesDir" Value="[dir653E5B33C37A8167E4F85D3A81773515]" Type="string" />
+          <RegistryValue Name="SortPriority" Value="16" Type="integer" />
+        </RegistryKey>
+      </Component>
+      <Component Id="cmp5A5C037B0B40D7CCA17B221D82BD9E5F" Guid="{9859410D-41DE-4A24-8F82-381BBC3AADF2}">
+        <RegistryKey Key="Software\Microsoft\VisualStudio\10.0\Projects\{8BC9CEBA-8B4A-11D0-8D11-00A0C91BC942}\AddItemTemplates\TemplateDirs\{6A7385B4-1D62-46e0-A4E3-AED4475371F0}" Root="HKLM" />
+      </Component>
+      <Component Id="cmpB98C07E6CC57CDCBDB5D54165FD37138" Guid="{EF1F687C-4CC9-46F5-AD8C-FB2336D71ACD}">
+        <RegistryKey Key="Software\Microsoft\VisualStudio\10.0\Projects\{8BC9CEBA-8B4A-11D0-8D11-00A0C91BC942}\AddItemTemplates\TemplateDirs\{6A7385B4-1D62-46e0-A4E3-AED4475371F0}\/1" Root="HKLM">
+          <RegistryValue Value="Qt4 Classes" Type="string" />
+          <RegistryValue Name="TemplatesDir" Value="[dir62BCAAFDFC310701E03EA7B60790FC26]" Type="string" />
+          <RegistryValue Name="SortPriority" Value="16" Type="integer" />
+        </RegistryKey>
+      </Component>
+      <Component Id="cmp95E92E04AB3C5FCF04973B74406671F5" Guid="{75E2A5D2-B577-4A27-9C75-069AAC8D5CFF}">
+        <RegistryKey Key="Software\Microsoft\VisualStudio\10.0\Projects\{8BC9CEBA-8B4A-11D0-8D11-00A0C91BC942}\AddItemTemplates\TemplateDirs\{6A7385B4-1D62-46e0-A4E3-AED4475371F0}\/2" Root="HKLM">
+          <RegistryValue Name="SortPriority" Value="16" Type="integer" />
+        </RegistryKey>
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+  <Fragment>
+    <DirectoryRef Id="TARGETDIR">
+      <Component Id="cmpCACA95102C58482DBF374A043BB15CEA" Guid="{545ECE63-ED6E-49FD-B0A7-BACB7ADC7A05}">
+        <RegistryKey Key="Software\Microsoft\VisualStudio\10.0_Config\AutomationOptions\LookInFolders" Root="HKCU">
+          <RegistryValue Name="[dirA5E894863CB6F1F770D66B93F6E31836]" Value="" Type="string" />
+        </RegistryKey>
+      </Component>
+      <Component Id="cmpD32690EF62274406966C267D5AF4F5E3" Guid="{2D1E5E49-22E0-49D0-8A19-495214BF955D}">
+        <RegistryKey Key="Software\Microsoft\VisualStudio\10.0_Config\NewProjectTemplates\TemplateDirs\{6A7385B4-1D62-46e0-A4E3-AED4475371F0}" Root="HKCU" />
+      </Component>
+      <Component Id="cmp856EBE7018D14ED4B9906CD664DA97CD" Guid="{9FB4EB23-3A57-48C1-93D2-180EAE6C90F7}">
+        <RegistryKey Key="Software\Microsoft\VisualStudio\10.0_Config\NewProjectTemplates\TemplateDirs\{6A7385B4-1D62-46e0-A4E3-AED4475371F0}\/1" Root="HKCU">
+          <RegistryValue Value="Qt4 Projects" Type="string" />
+          <RegistryValue Name="SortPriority" Value="16" Type="integer" />
+          <RegistryValue Name="TemplatesDir" Value="[dirF929A1BEC0ADF1B8CD2C56B27E5A4BE5]" Type="string" />
+        </RegistryKey>
+      </Component>
+      <Component Id="cmp4D8F6D927ED745E6994550ADD3BC2785" Guid="{F2C87A0E-BC78-4CED-AD9E-5DD70CBBC1A1}">
+        <RegistryKey Key="Software\Microsoft\VisualStudio\10.0_Config\NewProjectTemplates\TemplateDirs\{6A7385B4-1D62-46e0-A4E3-AED4475371F0}\/2" Root="HKCU">
+          <RegistryValue Name="SortPriority" Value="16" Type="integer" />
+        </RegistryKey>
+      </Component>
+      <Component Id="cmpAF272F628E8A4620AAA3A5A6D3B789F2" Guid="{D39725CD-F812-43DD-B7CB-587A7923ED28}">
+        <RegistryKey Key="Software\Microsoft\VisualStudio\10.0_Config\Projects\{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}\AddItemTemplates\TemplateDirs\{6A7385B4-1D62-46e0-A4E3-AED4475371F0}" Root="HKCU" />
+      </Component>
+      <Component Id="cmp3D945BFB9FB74B5B89545834B76FCE20" Guid="{2A760167-9969-436B-B615-195B136DDB15}">
+        <RegistryKey Key="Software\Microsoft\VisualStudio\10.0_Config\Projects\{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}\AddItemTemplates\TemplateDirs\{6A7385B4-1D62-46e0-A4E3-AED4475371F0}\/1" Root="HKCU">
+          <RegistryValue Value="Qt Forms" Type="string" />
+          <RegistryValue Name="TemplatesDir" Value="[dir491E8E0B662FD36AD89F082720275A81]" Type="string" />
+          <RegistryValue Name="SortPriority" Value="16" Type="integer" />
+        </RegistryKey>
+      </Component>
+      <Component Id="cmpBD24EB95C1DB48709001BBE5893E65FA" Guid="{B6D5662A-607D-49C5-B731-7D7206CF0145}">
+        <RegistryKey Key="Software\Microsoft\VisualStudio\10.0_Config\Projects\{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}\AddItemTemplates\TemplateDirs\{6A7385B4-1D62-46e0-A4E3-AED4475371F0}\/2" Root="HKCU">
+          <RegistryValue Value="Qt Resources" Type="string" />
+          <RegistryValue Name="TemplatesDir" Value="[dir653E5B33C37A8167E4F85D3A81773515]" Type="string" />
+          <RegistryValue Name="SortPriority" Value="16" Type="integer" />
+        </RegistryKey>
+      </Component>
+      <Component Id="cmpEA488CDBE10541738008DC462BF10040" Guid="{9F223E19-4067-43CC-852A-E3F1EDB76E64}">
+        <RegistryKey Key="Software\Microsoft\VisualStudio\10.0_Config\Projects\{8BC9CEBA-8B4A-11D0-8D11-00A0C91BC942}\AddItemTemplates\TemplateDirs\{6A7385B4-1D62-46e0-A4E3-AED4475371F0}" Root="HKCU" />
+      </Component>
+      <Component Id="cmpC996BE44FBB1418194065B3DC3189A15" Guid="{E6157117-C748-4918-94CD-81FF6CE7DB0F}">
+        <RegistryKey Key="Software\Microsoft\VisualStudio\10.0_Config\Projects\{8BC9CEBA-8B4A-11D0-8D11-00A0C91BC942}\AddItemTemplates\TemplateDirs\{6A7385B4-1D62-46e0-A4E3-AED4475371F0}\/1" Root="HKCU">
+          <RegistryValue Value="Qt4 Classes" Type="string" />
+          <RegistryValue Name="TemplatesDir" Value="[dir62BCAAFDFC310701E03EA7B60790FC26]" Type="string" />
+          <RegistryValue Name="SortPriority" Value="16" Type="integer" />
+        </RegistryKey>
+      </Component>
+      <Component Id="cmp10412D64B0AA4695AA5D76EAE9754B92" Guid="{88B06631-A930-4FDD-8BCC-1B815B695C0F}">
+        <RegistryKey Key="Software\Microsoft\VisualStudio\10.0_Config\Projects\{8BC9CEBA-8B4A-11D0-8D11-00A0C91BC942}\AddItemTemplates\TemplateDirs\{6A7385B4-1D62-46e0-A4E3-AED4475371F0}\/2" Root="HKCU">
+          <RegistryValue Name="SortPriority" Value="16" Type="integer" />
+        </RegistryKey>
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+  <Fragment>
+    <ComponentGroup Id="cgQt4VSAddin2010Reg">
+      <ComponentRef Id="cmpCBF4A0DEC98BCA0755B2196DB578B595" />
+      <ComponentRef Id="cmp15AEC25F6B0D7B7E6BC1F7C126855FBE" />
+      <ComponentRef Id="cmpEABF2EB4F1565CFFDF0DCA6F0FFFA424" />
+      <ComponentRef Id="cmpE2D828D3198942AEBDC8AF20CBAE7D4E" />
+      <ComponentRef Id="cmpAF7BDF6F0EDEEEEF7FF08A0C37B01D89" />
+      <ComponentRef Id="cmp6F8B1F0DFD11CE44EDEBA00A88031C10" />
+      <ComponentRef Id="cmpE78A2032D2F181E61C0F4657C7D79DD0" />
+      <ComponentRef Id="cmp5A5C037B0B40D7CCA17B221D82BD9E5F" />
+      <ComponentRef Id="cmpB98C07E6CC57CDCBDB5D54165FD37138" />
+      <ComponentRef Id="cmp95E92E04AB3C5FCF04973B74406671F5" />
+      <ComponentRef Id="cmpCACA95102C58482DBF374A043BB15CEA" />
+      <ComponentRef Id="cmpD32690EF62274406966C267D5AF4F5E3" />
+      <ComponentRef Id="cmp856EBE7018D14ED4B9906CD664DA97CD" />
+      <ComponentRef Id="cmp4D8F6D927ED745E6994550ADD3BC2785" />
+      <ComponentRef Id="cmpAF272F628E8A4620AAA3A5A6D3B789F2" />
+      <ComponentRef Id="cmp3D945BFB9FB74B5B89545834B76FCE20" />
+      <ComponentRef Id="cmpBD24EB95C1DB48709001BBE5893E65FA" />
+      <ComponentRef Id="cmpEA488CDBE10541738008DC462BF10040" />
+      <ComponentRef Id="cmpC996BE44FBB1418194065B3DC3189A15" />
+      <ComponentRef Id="cmp10412D64B0AA4695AA5D76EAE9754B92" />
+     </ComponentGroup>
+  </Fragment>
+</Wix>

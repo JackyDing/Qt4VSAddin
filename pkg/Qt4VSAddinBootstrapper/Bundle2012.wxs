@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:bal="http://schemas.microsoft.com/wix/BalExtension">
+  <Bundle Name="Qt4VSAddinBootstrapper" Version="1.1.12" Manufacturer="Digia Plc" UpgradeCode="61e5e8e0-19ff-46d6-8a1c-07078263354e" IconSourceFile="Qt4VSAddin.ico">
+    <BootstrapperApplicationRef Id="WixStandardBootstrapperApplication.HyperlinkLicense">
+      <bal:WixStandardBootstrapperApplication LicenseUrl="" SuppressOptionsUI="yes"/>
+    </BootstrapperApplicationRef>
+    <Chain>
+      <MsiPackage SourceFile="$(var.Qt4VSAddin2012.TargetPath)" DisplayInternalUI="yes" />
+    </Chain>
+  </Bundle>
+</Wix>

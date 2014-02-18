@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+    <ComponentGroup Id="cgQt4VSAddin2010">
+      <ComponentRef Id="cmpACC2C7E57B177F3DC58C413620DB4C09" />
+      <ComponentRef Id="cmp161C97D542614F4F3E08BB79916595F6" />
+      <ComponentRef Id="cmp67F5A3D63D5933D5C3BAD555BB865750" />
+      <ComponentRef Id="cmpD7E2D2D0262F08BA7DFDCF7A1154ECB2" />
+      <ComponentRef Id="cmpF27FE4499EDC7326D81143348C733364" />
+      <ComponentRef Id="cmp941EE571ED6236E7F7348E4592574C88" />
+      <ComponentRef Id="cmp941F296D48F24045E45EBB8CAC05711C" />
+      <ComponentRef Id="cmp498159A5F3DEF3B9F2E77311E265746A" />
+      <ComponentRef Id="cmp725D94D422C8EFD0C06AF432EB7C05F0" />
+      <ComponentRef Id="cmp902F5D56BC3EA876192DD51737E692E1" />
+      <ComponentRef Id="cmp05A4485D5C9A55DA20EF638B1AC54598" />
+      <ComponentRef Id="cmpAAC0C6E3B3C08D261459061B3AE7A169" />
+      <ComponentRef Id="cmpED0C9A7E095E4D43D395B937B192D144" />
+      <ComponentRef Id="cmp948FB5814871E7E353D52A0F7829033A" />
+      <ComponentRef Id="cmp0F386E4C77964DDBAAB770BC8645D3FF" />
+      <ComponentRef Id="cmp200363084F33266835D91BBE98FB490A" />
+      <ComponentRef Id="cmp3AA45DA9187B0B57A5E7B4554CA78FFB" />
+      <ComponentRef Id="cmp0FD67CAF45A71E2DB835F41752F96D29" />
+      <ComponentRef Id="cmpC2172793D0FBF4E8675DA528A24897AF" />
+      <ComponentRef Id="cmpD179D72D58DF3BA127EA341676DD9720" />
+      <ComponentRef Id="cmpCDD2F95217F021DBCC16E0230E9D9421" />
+      <ComponentRef Id="cmp9A32F6CAC2884804DE05617E41A7FF30" />
+      <ComponentRef Id="cmp6CCF72B77D254F153AC377DF77295476" />
+      <ComponentRef Id="cmp21270B52628620ED6AA3BE8B8D4AA064" />
+      <ComponentRef Id="cmpA0DE7B7FBB00044632C5357520E29744" />
+    </ComponentGroup>
+  </Fragment>
+</Wix>

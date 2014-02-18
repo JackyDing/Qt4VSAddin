@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="Windows-1252" standalone="no"?>
+<Extensibility xmlns="http://schemas.microsoft.com/AutomationExtensibility">
+	<HostApplication>
+		<Name>Microsoft Visual Studio</Name>
+		<Version>11.0</Version>
+	</HostApplication>
+	<Addin>
+		<FriendlyName>Qt4 Add-in 1.1.12</FriendlyName>
+		<Description>Qt4 Add-in 1.1.12</Description>
+		<AboutBoxDetails>This is Visual Studio Add-in component for Qt4. For more information about the Qt4 Add-in, see \r\nhttp://qt.digia.com/\r\nCopyright (c) 2012-2014 Digia Plc and/or its subsidiary(-ies)</AboutBoxDetails>
+		<AboutIconData>@AboutIcon</AboutIconData>
+		<Assembly>Qt4VSAddin.dll</Assembly>
+		<FullClassName>Qt4VSAddin.Connect</FullClassName>
+		<LoadBehavior>5</LoadBehavior>
+		<CommandPreload>0</CommandPreload>
+		<CommandLineSafe>1</CommandLineSafe>
+	</Addin>
+</Extensibility>

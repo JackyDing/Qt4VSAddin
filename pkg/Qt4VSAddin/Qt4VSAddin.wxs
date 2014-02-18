@@ -1,0 +1,973 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="{D3C08AA0-5D36-473F-96CF-BDD976A31C29}" Name="Qt4 Visual Studio Add-in 1.1.12" Language="1033" Version="1.1.12" Manufacturer="Digia Plc" UpgradeCode="514e5197-b545-4191-9600-12b33d2fa109">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine"/>
+    <Property Id="MSIUSEREALADMINDETECTION" Value="1"/>
+    <Icon Id="icon.ico" SourceFile="Qt4VSAddin.ico"/>
+    <Property Id="ARPPRODUCTICON" Value="icon.ico"/>
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed."/>
+    <Feature Id="Qt4VSAddin2010" Level="1" Title="Qt4VSAddin for Visual Studio 2010" ConfigurableDirectory="INSTALLFOLDER">
+      <Condition Level="0">VS2010_IDE_VC_PROJECTSYSTEM_INSTALLED</Condition>
+      <ComponentGroupRef Id="cgQt4VSAddin"/>
+      <ComponentGroupRef Id="cgQt4VSAddin2010"/>
+      <ComponentGroupRef Id="cgQt4VSAddin2010Reg"/>
+    </Feature>
+    <Feature Id="Qt4VSAddin2012" Level="1" Title="Qt4VSAddin for Visual Studio 2012" ConfigurableDirectory="INSTALLFOLDER">
+      <Condition Level="0">VS2012_IDE_VC_PROJECTSYSTEM_INSTALLED</Condition>
+      <ComponentGroupRef Id="cgQt4VSAddin"/>
+      <ComponentGroupRef Id="cgQt4VSAddin2012"/>
+      <ComponentGroupRef Id="cgQt4VSAddin2012Reg"/>
+    </Feature>
+    <Feature Id="Qt4VSAddin2013" Level="1" Title="Qt4VSAddin for Visual Studio 2013" ConfigurableDirectory="INSTALLFOLDER">
+      <Condition Level="0">VS2013_IDE_VC_PROJECTSYSTEM_INSTALLED</Condition>
+      <ComponentGroupRef Id="cgQt4VSAddin"/>
+      <ComponentGroupRef Id="cgQt4VSAddin2013"/>
+      <ComponentGroupRef Id="cgQt4VSAddin2013Reg"/>
+    </Feature>
+    <Media Id="1" Cabinet="Qt4VSAddin.cab" EmbedCab="yes"/>
+    <WixVariable Id="WixUILicenseRtf" Value="Qt4VSAddin.rtf"/>
+    <WixVariable Id="WixUIBannerBmp" Value="Qt4VSAddinBannerBmp.bmp"/>
+    <WixVariable Id="WixUIDialogBmp" Value="Qt4VSAddinDialogBmp.bmp"/>
+    <UIRef Id="WixUI_FeatureTree"/>
+    <!--
+    <Binary Id="Qt4Visualizer2010" SourceFile="$(var.ProjectDir)visualizers\10.0\qt4-2010.visualizer" />
+    <Binary Id="Qt4Visualizer2012" SourceFile="$(var.ProjectDir)visualizers\11.0\qt4-2012.visualizer" />
+    <Binary Id="Qt4Visualizer2013" SourceFile="$(var.ProjectDir)visualizers\12.0\qt4-2013.visualizer" />
+    <PropertyRef Id="VS2010_ROOT_FOLDER" />
+    <PropertyRef Id="VS2012_ROOT_FOLDER" />
+    <PropertyRef Id="VS2013_ROOT_FOLDER" />
+    <SetProperty Id="VS2010_AUTOEXPDAT" Before="CostInitialize" Value="[VS2010_ROOT_FOLDER]Common7\Packages\Debugger\autoexp.dat" />
+    <SetProperty Id="VS2012_AUTOEXPDAT" Before="CostInitialize" Value="[VS2012_ROOT_FOLDER]Common7\Packages\Debugger\autoexp.dat" />
+    <SetProperty Id="VS2013_AUTOEXPDAT" Before="CostInitialize" Value="[VS2013_ROOT_FOLDER]Common7\Packages\Debugger\autoexp.dat" />
+    -->
+    <!--
+    <CustomActionRef Id="AppendQt4Visualizer"/>
+    <CustomActionRef Id="RemoveQt4Visualizer"/>
+    -->
+  </Product>
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="COMPANYFIKDER" Name="Digia">
+          <Directory Id="INSTALLFOLDER" Name="Qt4VSAddin"/>
+        </Directory>
+      </Directory>
+    </Directory>
+  </Fragment>
+  <!--
+  <Fragment>
+    <Binary Id="Qt4VSVisualizer" SourceFile="$(var.TargetDir)Qt4VSVisualizer.dll" />
+    <CustomAction Id="RemoveQt4Visualizer" BinaryKey="Qt4VSVisualizer" DllEntry="RemoveQt4Visualizer" />
+    <CustomAction Id="AppendQt4Visualizer" BinaryKey="Qt4VSVisualizer" DllEntry="AppendQt4Visualizer" />
+    <InstallExecuteSequence>
+      <Custom Action="AppendQt4Visualizer" After="InstallFinalize"><![CDATA[&Qt4VSAddin2010=3]]> OR <![CDATA[&Qt4VSAddin2012=3]]> OR <![CDATA[&Qt4VSAddin2013=3]]></Custom>
+      <Custom Action="RemoveQt4Visualizer" After="InstallFinalize"><![CDATA[!Qt4VSAddin2010=3]]> OR <![CDATA[!Qt4VSAddin2012=3]]> OR <![CDATA[!Qt4VSAddin2013=3]]></Custom>
+    </InstallExecuteSequence>
+  </Fragment>
+  -->
+  <Fragment>
+    <DirectoryRef Id="INSTALLFOLDER">
+      <Component Id="cmpC6C7601EB67D1BFFE8EB1C1B87103751" Guid="*">
+        <File Id="fil61940BF728366D5F5FDD07C07CE261D5" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\Changes-1.1.12"/>
+      </Component>
+      <Component Id="cmp3ABEEAAB7ACF4416811706599AA6C055" Guid="*">
+        <File Id="fil6FA7F3956746467384F0CA665EC7A82C" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\LICENSE.LGPL"/>
+      </Component>
+      <Component Id="cmp66CD5580D77D9E1290005BCB91A9B86B" Guid="*">
+        <File Id="filEF0CBDAB8B0CA44602C24AAB6B0597E5" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\qmakefilereader.exe"/>
+      </Component>
+      <Component Id="cmp3C96AD06F7556E74B8288855ED8049AD" Guid="*">
+        <File Id="fil6B2BA82BAA6BB3E60C30A41196F1629A" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\q4rceditor.exe"/>
+      </Component>
+      <Component Id="cmp9B47619F8508952CDB4686EE0364CCFD" Guid="*">
+        <File Id="fil316736C4D9AFA42283DFDD126DEF6941" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\qt4appwrapper.exe"/>
+      </Component>
+      <Component Id="cmp70E8DBE77778E140F3D3BA3C2EB3432C" Guid="*">
+        <File Id="fil924713256B37E333351895F37700BC0F" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\QtCore4.dll"/>
+      </Component>
+      <Component Id="cmp528E207A842E83130D845ECB6275063F" Guid="*">
+        <File Id="fil675D090D6AA9F96B7A15C746D79C3990" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\QtGui4.dll"/>
+      </Component>
+      <Component Id="cmp0D7FBE4BC8AAF15C69E24E0D5F154DB3" Guid="*">
+        <File Id="filCA85D7C0F66038CE52E3513905DAAE47" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\QtSvg4.dll"/>
+      </Component>
+      <Component Id="cmpEC9B9FF425619B22CE77F4164A4EFBA0" Guid="*">
+        <File Id="filA841A3CA590DE9EFCE94F338AD9910FF" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\QtXml4.dll"/>
+      </Component>
+      <Directory Id="dirA5E894863CB6F1F770D66B93F6E31836" Name="10.0">
+        <Component Id="cmpACC2C7E57B177F3DC58C413620DB4C09" Guid="*">
+          <File Id="fil7A69AC9672FE43D3953014644E1BC06C" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\10.0\Qt4VSAddin.AddIn"/>
+        </Component>
+        <Component Id="cmp161C97D542614F4F3E08BB79916595F6" Guid="*">
+          <File Id="fil1D6012A3EF5EC94A4F4201AC358B75AD" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\10.0\Qt4VSAddin.dll"/>
+        </Component>
+        <Component Id="cmp67F5A3D63D5933D5C3BAD555BB865750" Guid="*">
+          <Class Id="{83B731AE-2C32-4597-BC1D-9373EC6DFE82}" Context="InprocServer32" Description="Digia.Qt4ProjectLib.QtProjectEngine" ThreadingModel="both" ForeignServer="mscoree.dll">
+            <ProgId Id="Digia.Qt4ProjectEngine100" Description="Digia.Qt4ProjectLib.QtProjectEngine"/>
+          </Class>
+          <File Id="filF6CB77D2728AF701268BCB4A1B60F0FC" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\10.0\Qt4ProjectEngineLib.dll"/>
+          <RegistryValue Root="HKCR" Key="CLSID\{83B731AE-2C32-4597-BC1D-9373EC6DFE82}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write"/>
+          <RegistryValue Root="HKCR" Key="CLSID\{83B731AE-2C32-4597-BC1D-9373EC6DFE82}\InprocServer32\1.1.12.0" Name="Class" Value="Digia.Qt4ProjectLib.Qt4ProjectEngine" Type="string" Action="write"/>
+          <RegistryValue Root="HKCR" Key="CLSID\{83B731AE-2C32-4597-BC1D-9373EC6DFE82}\InprocServer32\1.1.12.0" Name="Assembly" Value="Qt4ProjectEngineLib, Version=1.1.12.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write"/>
+          <RegistryValue Root="HKCR" Key="CLSID\{83B731AE-2C32-4597-BC1D-9373EC6DFE82}\InprocServer32\1.1.12.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write"/>
+          <RegistryValue Root="HKCR" Key="CLSID\{83B731AE-2C32-4597-BC1D-9373EC6DFE82}\InprocServer32\1.1.12.0" Name="CodeBase" Value="file:///[#filF6CB77D2728AF701268BCB4A1B60F0FC]" Type="string" Action="write"/>
+          <RegistryValue Root="HKCR" Key="CLSID\{83B731AE-2C32-4597-BC1D-9373EC6DFE82}\InprocServer32" Name="Class" Value="Digia.Qt4ProjectLib.Qt4ProjectEngine" Type="string" Action="write"/>
+          <RegistryValue Root="HKCR" Key="CLSID\{83B731AE-2C32-4597-BC1D-9373EC6DFE82}\InprocServer32" Name="Assembly" Value="Qt4ProjectEngineLib, Version=1.1.12.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write"/>
+          <RegistryValue Root="HKCR" Key="CLSID\{83B731AE-2C32-4597-BC1D-9373EC6DFE82}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write"/>
+          <RegistryValue Root="HKCR" Key="CLSID\{83B731AE-2C32-4597-BC1D-9373EC6DFE82}\InprocServer32" Name="CodeBase" Value="file:///[#filF6CB77D2728AF701268BCB4A1B60F0FC]" Type="string" Action="write"/>
+        </Component>
+        <Component Id="cmpD7E2D2D0262F08BA7DFDCF7A1154ECB2" Guid="*">
+          <File Id="fil7EC50A9F399FFAFECE68D9E427F0731F" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\10.0\Qt4ProjectLib.dll"/>
+        </Component>
+      </Directory>
+      <Directory Id="dir681DCD424A66EEF283342B9D66E27554" Name="11.0">
+        <Component Id="cmp6B30CB5EED52C3CC8DD8F54981F2CA95" Guid="*">
+          <File Id="fil322BECFFAA98F72355EE3E53F8CE95DF" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\11.0\Qt4VSAddin.AddIn"/>
+        </Component>
+        <Component Id="cmp1C585DD085921D7C6DD6A18B930BD701" Guid="*">
+          <File Id="fil830442DD3316EF183952A7456E8D36FE" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\11.0\Qt4VSAddin.dll"/>
+        </Component>
+        <Component Id="cmp31279BEAF499ABEA7EC309B64FF6A2E9" Guid="*">
+          <Class Id="{FFCC33DF-DE4A-4C7C-8F24-FE85A8AE9B87}" Context="InprocServer32" Description="Digia.Qt4ProjectLib.QtProjectEngine" ThreadingModel="both" ForeignServer="mscoree.dll">
+            <ProgId Id="Digia.Qt4ProjectEngine110" Description="Digia.Qt4ProjectLib.QtProjectEngine"/>
+          </Class>
+          <File Id="filD81D0A05E39774521C184BA61E7A5B96" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\11.0\Qt4ProjectEngineLib.dll"/>
+          <RegistryValue Root="HKCR" Key="CLSID\{FFCC33DF-DE4A-4C7C-8F24-FE85A8AE9B87}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write"/>
+          <RegistryValue Root="HKCR" Key="CLSID\{FFCC33DF-DE4A-4C7C-8F24-FE85A8AE9B87}\InprocServer32\1.1.12.0" Name="Class" Value="Digia.Qt4ProjectLib.Qt4ProjectEngine" Type="string" Action="write"/>
+          <RegistryValue Root="HKCR" Key="CLSID\{FFCC33DF-DE4A-4C7C-8F24-FE85A8AE9B87}\InprocServer32\1.1.12.0" Name="Assembly" Value="Qt4ProjectEngineLib, Version=1.1.12.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write"/>
+          <RegistryValue Root="HKCR" Key="CLSID\{FFCC33DF-DE4A-4C7C-8F24-FE85A8AE9B87}\InprocServer32\1.1.12.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write"/>
+          <RegistryValue Root="HKCR" Key="CLSID\{FFCC33DF-DE4A-4C7C-8F24-FE85A8AE9B87}\InprocServer32\1.1.12.0" Name="CodeBase" Value="file:///[#filD81D0A05E39774521C184BA61E7A5B96]" Type="string" Action="write"/>
+          <RegistryValue Root="HKCR" Key="CLSID\{FFCC33DF-DE4A-4C7C-8F24-FE85A8AE9B87}\InprocServer32" Name="Class" Value="Digia.Qt4ProjectLib.Qt4ProjectEngine" Type="string" Action="write"/>
+          <RegistryValue Root="HKCR" Key="CLSID\{FFCC33DF-DE4A-4C7C-8F24-FE85A8AE9B87}\InprocServer32" Name="Assembly" Value="Qt4ProjectEngineLib, Version=1.1.12.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write"/>
+          <RegistryValue Root="HKCR" Key="CLSID\{FFCC33DF-DE4A-4C7C-8F24-FE85A8AE9B87}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write"/>
+          <RegistryValue Root="HKCR" Key="CLSID\{FFCC33DF-DE4A-4C7C-8F24-FE85A8AE9B87}\InprocServer32" Name="CodeBase" Value="file:///[#filD81D0A05E39774521C184BA61E7A5B96]" Type="string" Action="write"/>
+        </Component>
+        <Component Id="cmp1EE33E82ED29CA4045C65136AC79C411" Guid="*">
+          <File Id="fil6E59639A34AB2BE66F6348B481999345" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\11.0\Qt4ProjectLib.dll"/>
+        </Component>
+      </Directory>
+      <Directory Id="dir3D45F350E0FF4F76B56C7123618B614A" Name="12.0">
+        <Component Id="cmpBF71DD1993DD4868BA4B0B9E4D8ECCB5" Guid="*">
+          <File Id="fil36574AF821834B678FA4541380A7A39F" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\12.0\Qt4VSAddin.AddIn"/>
+        </Component>
+        <Component Id="cmpF04960F6BB474A49964347BA5C2E1BDE" Guid="*">
+          <File Id="fil19D5091B180047F68B37776D13F5103D" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\12.0\Qt4VSAddin.dll"/>
+        </Component>
+        <Component Id="cmp4C9BC40123C34235AA710B9115F153F4" Guid="*">
+          <Class Id="{74478C03-3902-459E-B708-07C8BFA2B75B}" Context="InprocServer32" Description="Digia.Qt4ProjectLib.QtProjectEngine" ThreadingModel="both" ForeignServer="mscoree.dll">
+            <ProgId Id="Digia.Qt4ProjectEngine120" Description="Digia.Qt4ProjectLib.QtProjectEngine"/>
+          </Class>
+          <File Id="fil29C992D92DE5406E90F241BC5BD23912" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\12.0\Qt4ProjectEngineLib.dll"/>
+          <RegistryValue Root="HKCR" Key="CLSID\{74478C03-3902-459E-B708-07C8BFA2B75B}\Implemented Categories\{62C8FE65-4EBB-45e7-B440-6E39B2CDBF29}" Value="" Type="string" Action="write"/>
+          <RegistryValue Root="HKCR" Key="CLSID\{74478C03-3902-459E-B708-07C8BFA2B75B}\InprocServer32\1.1.12.0" Name="Class" Value="Digia.Qt4ProjectLib.Qt4ProjectEngine" Type="string" Action="write"/>
+          <RegistryValue Root="HKCR" Key="CLSID\{74478C03-3902-459E-B708-07C8BFA2B75B}\InprocServer32\1.1.12.0" Name="Assembly" Value="Qt4ProjectEngineLib, Version=1.1.12.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write"/>
+          <RegistryValue Root="HKCR" Key="CLSID\{74478C03-3902-459E-B708-07C8BFA2B75B}\InprocServer32\1.1.12.0" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write"/>
+          <RegistryValue Root="HKCR" Key="CLSID\{74478C03-3902-459E-B708-07C8BFA2B75B}\InprocServer32\1.1.12.0" Name="CodeBase" Value="file:///[#fil29C992D92DE5406E90F241BC5BD23912]" Type="string" Action="write"/>
+          <RegistryValue Root="HKCR" Key="CLSID\{74478C03-3902-459E-B708-07C8BFA2B75B}\InprocServer32" Name="Class" Value="Digia.Qt4ProjectLib.Qt4ProjectEngine" Type="string" Action="write"/>
+          <RegistryValue Root="HKCR" Key="CLSID\{74478C03-3902-459E-B708-07C8BFA2B75B}\InprocServer32" Name="Assembly" Value="Qt4ProjectEngineLib, Version=1.1.12.0, Culture=neutral, PublicKeyToken=null" Type="string" Action="write"/>
+          <RegistryValue Root="HKCR" Key="CLSID\{74478C03-3902-459E-B708-07C8BFA2B75B}\InprocServer32" Name="RuntimeVersion" Value="v4.0.30319" Type="string" Action="write"/>
+          <RegistryValue Root="HKCR" Key="CLSID\{74478C03-3902-459E-B708-07C8BFA2B75B}\InprocServer32" Name="CodeBase" Value="file:///[#fil29C992D92DE5406E90F241BC5BD23912]" Type="string" Action="write"/>
+        </Component>
+        <Component Id="cmp323A9B67D2FC490489537FB7BF2EEA29" Guid="*">
+          <File Id="fil3CE15FF597074D7F82EC247CA42B106B" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\12.0\Qt4ProjectLib.dll"/>
+        </Component>
+      </Directory>
+      <Directory Id="dirCFD5DCDF1CAB22CF8B4B7E1E01E79D36" Name="imageformats">
+        <Component Id="cmpBF909DF97F234805005FD8363DA2673C" Guid="*">
+          <File Id="fil879A9FD104F60D1A6BC7412A81B86B75" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\imageformats\qico4.dll"/>
+        </Component>
+        <Component Id="cmp7A62FF3E5346D968B4B1191C91D781BC" Guid="*">
+          <File Id="filA818E4DE0AA2D5FCE36389A2D57506BD" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\imageformats\qjpeg4.dll"/>
+        </Component>
+        <Component Id="cmp6DBB8C6A232C293548FC9CFAD1684DB7" Guid="*">
+          <File Id="fil07410334FE7AD653A15B832F23249CE0" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\imageformats\qmng4.dll"/>
+        </Component>
+        <Component Id="cmp7A3B585528B0407BEB70DE02C7B87C24" Guid="*">
+          <File Id="fil40625B570B0A63D873510A4D69FAC3DA" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\imageformats\qsvg4.dll"/>
+        </Component>
+        <Component Id="cmp6B50CA1443CA858C301DE35D40F553FF" Guid="*">
+          <File Id="filFF74CBA2CF5EB4805B8DED3DC4F7E055" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\imageformats\qtiff4.dll"/>
+        </Component>
+      </Directory>
+      <Directory Id="dir4121A868CDDEA6626C946E3F3E9B98C2" Name="projects">
+        <Directory Id="dirF929A1BEC0ADF1B8CD2C56B27E5A4BE5" Name="10.0">
+          <Component Id="cmpF27FE4499EDC7326D81143348C733364" Guid="*">
+            <File Id="fil950018ED6F4EAABFE471A1787BB1316D" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\10.0\Qt4ActiveQtServerProject.ico"/>
+          </Component>
+          <Component Id="cmp941EE571ED6236E7F7348E4592574C88" Guid="*">
+            <File Id="fil6936FFFCBF1AFD6139B420343D391288" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\10.0\Qt4ActiveQtServerProject.vsdir"/>
+          </Component>
+          <Component Id="cmp941F296D48F24045E45EBB8CAC05711C" Guid="*">
+            <File Id="fil8EE872BE1FF234A86FBAC8D5A8972C2F" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\10.0\Qt4ActiveQtServerProject.vsz"/>
+          </Component>
+          <Component Id="cmp498159A5F3DEF3B9F2E77311E265746A" Guid="*">
+            <File Id="filF5DDC5384E3BB32C17E01C58BC980952" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\10.0\Qt4ConsoleProject.ico"/>
+          </Component>
+          <Component Id="cmp725D94D422C8EFD0C06AF432EB7C05F0" Guid="*">
+            <File Id="fil55F2DAFA85E2ABBDBCF3322F21752F42" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\10.0\Qt4ConsoleProject.vsdir"/>
+          </Component>
+          <Component Id="cmp902F5D56BC3EA876192DD51737E692E1" Guid="*">
+            <File Id="fil710630B390A58DE2D69012A081E45EB2" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\10.0\Qt4ConsoleProject.vsz"/>
+          </Component>
+          <Component Id="cmp05A4485D5C9A55DA20EF638B1AC54598" Guid="*">
+            <File Id="fil1179215AB71BC04D2D3C095A5AD492C4" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\10.0\Qt4DesignerPluginProject.ico"/>
+          </Component>
+          <Component Id="cmpAAC0C6E3B3C08D261459061B3AE7A169" Guid="*">
+            <File Id="fil133B7D9F213ED3B2F217C96D0AC50604" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\10.0\Qt4DesignerPluginProject.vsdir"/>
+          </Component>
+          <Component Id="cmpED0C9A7E095E4D43D395B937B192D144" Guid="*">
+            <File Id="fil5174B539877F0349BCDE7D5CB9E4EC0F" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\10.0\Qt4DesignerPluginProject.vsz"/>
+          </Component>
+          <Component Id="cmp948FB5814871E7E353D52A0F7829033A" Guid="*">
+            <File Id="filB5633B60D00062174CE7E3623F259F4A" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\10.0\Qt4GuiProject.ico"/>
+          </Component>
+          <Component Id="cmp0F386E4C77964DDBAAB770BC8645D3FF" Guid="*">
+            <File Id="fil08E0883BF4E7C7956F7BB39A5C26FF3F" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\10.0\Qt4GuiProject.vsdir"/>
+          </Component>
+          <Component Id="cmp200363084F33266835D91BBE98FB490A" Guid="*">
+            <File Id="filF9880C5437AA48FF3044B5F2715C5DBA" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\10.0\Qt4GuiProject.vsz"/>
+          </Component>
+          <Component Id="cmp3AA45DA9187B0B57A5E7B4554CA78FFB" Guid="*">
+            <File Id="fil531735524BD827065B56421C66AC6E76" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\10.0\Qt4LibProject.ico"/>
+          </Component>
+          <Component Id="cmp0FD67CAF45A71E2DB835F41752F96D29" Guid="*">
+            <File Id="filAE535293B05FEA98D7F35917163DAD48" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\10.0\Qt4LibProject.vsdir"/>
+          </Component>
+          <Component Id="cmpC2172793D0FBF4E8675DA528A24897AF" Guid="*">
+            <File Id="filBA3B6DEE83F636D4C853318897B47245" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\10.0\Qt4LibProject.vsz"/>
+          </Component>
+        </Directory>
+        <Directory Id="dir9A3391F05A08E33963A92FE8CED552F7" Name="11.0">
+          <Component Id="cmp585BB8C44A08542F0A385CCD4FCBDD85" Guid="*">
+            <File Id="fil0B9E41DF993A2F03454B4A522EAC8253" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\11.0\Qt4ActiveQtServerProject.ico"/>
+          </Component>
+          <Component Id="cmpA4A2CF7045897B5920517B2BC49AB56F" Guid="*">
+            <File Id="fil28EF7C53679D9D4EDB31137C5F084E16" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\11.0\Qt4ActiveQtServerProject.vsdir"/>
+          </Component>
+          <Component Id="cmp51CE3EF7AB013A381FFFCBA07FEEBD9B" Guid="*">
+            <File Id="fil51FA99B1809A758A123E179F5BAEC011" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\11.0\Qt4ActiveQtServerProject.vsz"/>
+          </Component>
+          <Component Id="cmpF2A9AE663A896087D54E656D648F4AE2" Guid="*">
+            <File Id="fil1CDDC7DE45AA795BD3DA2AEED9F304FB" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\11.0\Qt4ConsoleProject.ico"/>
+          </Component>
+          <Component Id="cmp8D964326283AF077505C1CC220D3B608" Guid="*">
+            <File Id="filB85CB60F9420D1179B4EE62427BDC97D" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\11.0\Qt4ConsoleProject.vsdir"/>
+          </Component>
+          <Component Id="cmp9C22C84B2964870B62BB33B7A2EF4F0B" Guid="*">
+            <File Id="filB584C501833EA04BB228D9CF97E51DE3" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\11.0\Qt4ConsoleProject.vsz"/>
+          </Component>
+          <Component Id="cmp1FAD834138D765EE68F0B4987BF679A1" Guid="*">
+            <File Id="filF8FB49843C465E5FADE9CFAECA244610" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\11.0\Qt4DesignerPluginProject.ico"/>
+          </Component>
+          <Component Id="cmpA120EC34D49CCE1E143883E0A47FA957" Guid="*">
+            <File Id="fil5FFAD8EA088B14C51A85A9F240F5B0F9" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\11.0\Qt4DesignerPluginProject.vsdir"/>
+          </Component>
+          <Component Id="cmp3089B646D6C8E6285F4A58010A0F294D" Guid="*">
+            <File Id="filBF4629C296F3B42C9E5472EC4876A92B" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\11.0\Qt4DesignerPluginProject.vsz"/>
+          </Component>
+          <Component Id="cmp386A9C1493CDFC7018D8EE71887BBE3E" Guid="*">
+            <File Id="filCB139FAE1B6AB35C6394DA4BC1BC419F" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\11.0\Qt4GuiProject.ico"/>
+          </Component>
+          <Component Id="cmpB24FA498A3C992F76549C74B9271E5A5" Guid="*">
+            <File Id="filBFC10C4BBA7032A55F8340FDFA7E86D2" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\11.0\Qt4GuiProject.vsdir"/>
+          </Component>
+          <Component Id="cmp89A54FC5FF122A26B8D9B55A77E34632" Guid="*">
+            <File Id="filA93978454606711A7BC9FDB50D947FFE" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\11.0\Qt4GuiProject.vsz"/>
+          </Component>
+          <Component Id="cmpD3E6530B31692979AA1A35D5ED951B6C" Guid="*">
+            <File Id="filEC5E02B335366A64DAD527CA0330D098" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\11.0\Qt4LibProject.ico"/>
+          </Component>
+          <Component Id="cmp1D208AD0396980F042A3681871A4A6C6" Guid="*">
+            <File Id="filAFC29BC1B182CB6895A02D95686E123A" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\11.0\Qt4LibProject.vsdir"/>
+          </Component>
+          <Component Id="cmp510BF35A2BF21520E0FC5215C0B4D5B3" Guid="*">
+            <File Id="fil57566823205B925F638742C869BA9560" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\11.0\Qt4LibProject.vsz"/>
+          </Component>
+        </Directory>
+        <Directory Id="dirFA4E7379F1AA4F22A2C2B9B538BCFD42" Name="12.0">
+          <Component Id="cmpECE37391A0414F7DB0EA666941632DA8" Guid="*">
+            <File Id="fil41C7D78683474BACBBE96B5FDB6B2384" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\12.0\Qt4ActiveQtServerProject.ico"/>
+          </Component>
+          <Component Id="cmp0D2E706B08A44B21876CA17B92DC2C7E" Guid="*">
+            <File Id="filC8FF3F3F463B458AA965DE968AD6D52C" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\12.0\Qt4ActiveQtServerProject.vsdir"/>
+          </Component>
+          <Component Id="cmp117FAE4ECD484FDC942391B4B061432B" Guid="*">
+            <File Id="fil4520D2AF016045A0B03FEB1C4E490941" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\12.0\Qt4ActiveQtServerProject.vsz"/>
+          </Component>
+          <Component Id="cmp2C91BE97ADD740F1B94B0B082ED19F96" Guid="*">
+            <File Id="filE6FE4C795A884BF88208BA3A24FEE819" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\12.0\Qt4ConsoleProject.ico"/>
+          </Component>
+          <Component Id="cmp435225AF41AB434DA60A447AEA79DBB3" Guid="*">
+            <File Id="fil3D5113B436664D6F900C01E52836A216" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\12.0\Qt4ConsoleProject.vsdir"/>
+          </Component>
+          <Component Id="cmp7DBCB7EBADEA4427B9C8CCEB7F83C56C" Guid="*">
+            <File Id="filBD7D44FE062A48F18DF712F409FB1B0E" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\12.0\Qt4ConsoleProject.vsz"/>
+          </Component>
+          <Component Id="cmp0441A53DC92648CC9188E0F993007DEE" Guid="*">
+            <File Id="fil23E2369BE44A4AA9861699219C0B1938" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\12.0\Qt4DesignerPluginProject.ico"/>
+          </Component>
+          <Component Id="cmpB2F9AD0DBBD54B86A9A2AE07CB30BCBD" Guid="*">
+            <File Id="fil34A71823A41A4EFE89D444A8FBD4BFBE" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\12.0\Qt4DesignerPluginProject.vsdir"/>
+          </Component>
+          <Component Id="cmp3CDC2AFD3E6D4F69963A54B1909803CA" Guid="*">
+            <File Id="fil9649FC97E67C4858AF6070D66C76E1DD" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\12.0\Qt4DesignerPluginProject.vsz"/>
+          </Component>
+          <Component Id="cmp96A27160FF374D068B503B965311B4A3" Guid="*">
+            <File Id="filC2C3E697E9704F1991B2289108D0B496" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\12.0\Qt4GuiProject.ico"/>
+          </Component>
+          <Component Id="cmp6297A26014FA445DB4C6436A06AA0F96" Guid="*">
+            <File Id="fil8C8574131532469787C25DFB1E56134C" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\12.0\Qt4GuiProject.vsdir"/>
+          </Component>
+          <Component Id="cmpF07F71CE9D4044E8B4355906CF737A5D" Guid="*">
+            <File Id="filAD96A59F5EAD47C987E9342895E6BB29" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\12.0\Qt4GuiProject.vsz"/>
+          </Component>
+          <Component Id="cmp0EC1B3D568AC4CC3A32489D709466EEC" Guid="*">
+            <File Id="filF6471785E8394390913DB4D1F96B39F5" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\12.0\Qt4LibProject.ico"/>
+          </Component>
+          <Component Id="cmpC48B30C536E7419A8A3AC54209BE34D6" Guid="*">
+            <File Id="fil53F593358BF445289BCFD36782B02A8B" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\12.0\Qt4LibProject.vsdir"/>
+          </Component>
+          <Component Id="cmp3A1A69FD7DCB46BA9C494D27A5A09E88" Guid="*">
+            <File Id="fil026915D23BA54643AB003994A037EDAA" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\projects\12.0\Qt4LibProject.vsz"/>
+          </Component>
+        </Directory>
+      </Directory>
+      <Directory Id="dir653E5B33C37A8167E4F85D3A81773515" Name="qrcItems">
+        <Component Id="cmp1E2D9DD7F355B7A4659FAD03C1528021" Guid="*">
+          <File Id="fil0CD6FB5DF9D60B269F290C42BAC5718C" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\qrcItems\newQrcFile.ico"/>
+        </Component>
+        <Component Id="cmpB35C422520C8B509D316782DD781FCB7" Guid="*">
+          <File Id="filF5A08D458DCA4B93C34D0374D6F8D683" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\qrcItems\newQrcFile.qrc"/>
+        </Component>
+        <Component Id="cmpB4669D1C9442EEB9B1BB935BE7DB146E" Guid="*">
+          <File Id="fil9966F309DA7E036421C5515C7784DA89" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\qrcItems\qrcFiles.vsdir"/>
+        </Component>
+      </Directory>
+      <Directory Id="dir491E8E0B662FD36AD89F082720275A81" Name="uiItems">
+        <Component Id="cmp09763079FDEDE0B30C681BD2639B4CD5" Guid="*">
+          <File Id="filF1103876FAF5650A547DC96807472468" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\uiItems\newUiDialogButtonsBottom.ico"/>
+        </Component>
+        <Component Id="cmpDC596507BEA3DFB2267A041A95BDBDD5" Guid="*">
+          <File Id="filF092EDA6EA2D6F5474282CA70DBE807C" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\uiItems\newUiDialogButtonsBottom.ui"/>
+        </Component>
+        <Component Id="cmpF521CCDF902E916621B684D4E0E9F0A2" Guid="*">
+          <File Id="fil267837F97F89B785527DC31F97E207CF" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\uiItems\newUiDialogButtonsRight.ico"/>
+        </Component>
+        <Component Id="cmp668212643BA2E44B5205AEF191C3430A" Guid="*">
+          <File Id="fil783D1995F12BD307FADCCBC1BB9377DB" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\uiItems\newUiDialogButtonsRight.ui"/>
+        </Component>
+        <Component Id="cmp38CF14FDB58040B183E9C3E4FD5FF8AC" Guid="*">
+          <File Id="fil4D966F58C6AE8E131E28F75D68CD4A99" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\uiItems\newUiMainWindow.ico"/>
+        </Component>
+        <Component Id="cmp8E7BAFC5F96AA93EE9FDBEE17EFA61BE" Guid="*">
+          <File Id="fil8D08370E0B36F341BE0EF7B3D0ED702A" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\uiItems\newUiMainWindow.ui"/>
+        </Component>
+        <Component Id="cmpB1DA61274A3565DAC673E7864490CDA2" Guid="*">
+          <File Id="fil2CEFB6F17C9395B0E106DC516B14D5AE" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\uiItems\newUiWidget.ico"/>
+        </Component>
+        <Component Id="cmpF42C433F2B2C1834E83807C4279C749C" Guid="*">
+          <File Id="fil554B18B179A00DA26693248BE9C94B87" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\uiItems\newUiWidget.ui"/>
+        </Component>
+        <Component Id="cmp527C7E28A98458ABF4E922FB47396578" Guid="*">
+          <File Id="fil942B96E7C71AB27A0866EB09CA823131" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\uiItems\uiFiles.vsdir"/>
+        </Component>
+      </Directory>
+      <Directory Id="dir1CC6AB7C6CB87D2475AACFBDDD6CBC80" Name="wizards">
+        <Directory Id="dir62BCAAFDFC310701E03EA7B60790FC26" Name="10.0">
+          <Component Id="cmpD179D72D58DF3BA127EA341676DD9720" Guid="*">
+            <File Id="filA35528EB8A9CB6887399E851A021080E" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\10.0\Qt4Class.ico"/>
+          </Component>
+          <Component Id="cmpCDD2F95217F021DBCC16E0230E9D9421" Guid="*">
+            <File Id="filE64FCC36BAD07F720095083F58A18A41" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\10.0\Qt4Class.vsdir"/>
+          </Component>
+          <Component Id="cmp9A32F6CAC2884804DE05617E41A7FF30" Guid="*">
+            <File Id="filC881F24B8F7A2592B22635319FBE63CD" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\10.0\Qt4Class.vsz"/>
+          </Component>
+          <Component Id="cmp6CCF72B77D254F153AC377DF77295476" Guid="*">
+            <File Id="fil20D0A04586CF6BA7C23AB3D79EE818DB" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\10.0\Qt4GuiClass.ico"/>
+          </Component>
+          <Component Id="cmp21270B52628620ED6AA3BE8B8D4AA064" Guid="*">
+            <File Id="fil3F21F6F6DE4739815DF9AB467CC01192" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\10.0\Qt4GuiClass.vsdir"/>
+          </Component>
+          <Component Id="cmpA0DE7B7FBB00044632C5357520E29744" Guid="*">
+            <File Id="fil65E496762DD0FC5D567DC4A0BD31F85E" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\10.0\Qt4GuiClass.vsz"/>
+          </Component>
+        </Directory>
+        <Directory Id="dir7D7187A8E9A60C70961EB1300DC10809" Name="11.0">
+          <Component Id="cmp7908387314F80652B84370212B4B1C2C" Guid="*">
+            <File Id="filF4C5D1906B74476F18E47686CB7A4A4F" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\11.0\Qt4Class.ico"/>
+          </Component>
+          <Component Id="cmp5BB81345AC061FAB2C93751922FE2DEC" Guid="*">
+            <File Id="fil884ED420AD55BFEFF52F3028DB9AC2FB" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\11.0\Qt4Class.vsdir"/>
+          </Component>
+          <Component Id="cmp286C65CF5297B2F545902F2C4DA2E880" Guid="*">
+            <File Id="filC1CB94878AB54E2DD8E8FB081FC48520" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\11.0\Qt4Class.vsz"/>
+          </Component>
+          <Component Id="cmpA09022F13EEEE317FFF99BD2257758CB" Guid="*">
+            <File Id="fil35F932A5AAA463C5C7779131D326C9D8" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\11.0\Qt4GuiClass.ico"/>
+          </Component>
+          <Component Id="cmp94C68B790D8DF40076A08DCEB81E14E0" Guid="*">
+            <File Id="fil6BD696396E2475B52C9840187961C914" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\11.0\Qt4GuiClass.vsdir"/>
+          </Component>
+          <Component Id="cmp0D9AB36FA74B91AB95FC4A424E353C0B" Guid="*">
+            <File Id="filB00BBA4D2CB9D3BF3568E33B9A006113" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\11.0\Qt4GuiClass.vsz"/>
+          </Component>
+        </Directory>
+        <Directory Id="dir034C9802F0D44A53A9ECB2D3D27B4FC8" Name="12.0">
+          <Component Id="cmpBEDDC98A085444A1A0C4878ACD29F1FF" Guid="*">
+            <File Id="fil9B112EC5D10E46DE8A53E9D7E3885F00" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\12.0\Qt4Class.ico"/>
+          </Component>
+          <Component Id="cmpD1869CB63BCE49F4B60AC5C4E295FCED" Guid="*">
+            <File Id="filBC3AE18EF5DA498EA9EAD996BF8662C4" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\12.0\Qt4Class.vsdir"/>
+          </Component>
+          <Component Id="cmpC1E78832940746E0BA612BB13E25555F" Guid="*">
+            <File Id="fil1CDCC4ADEA3A42388A75B93010D02D70" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\12.0\Qt4Class.vsz"/>
+          </Component>
+          <Component Id="cmpD6C27C7060474FACB7F095662D13CBA1" Guid="*">
+            <File Id="filFAB3397819E04C2C86758D73E71CCC9A" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\12.0\Qt4GuiClass.ico"/>
+          </Component>
+          <Component Id="cmp35CAF1769C6C4F26B1C49324A85A28DB" Guid="*">
+            <File Id="fil8C9FBC65DDA64E86ABF4F02F7DAECCAF" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\12.0\Qt4GuiClass.vsdir"/>
+          </Component>
+          <Component Id="cmp54FF5F16D33D468A96DD94FCC9F547B4" Guid="*">
+            <File Id="fil598AF57B9E87469899BA964FF07D1CFC" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\12.0\Qt4GuiClass.vsz"/>
+          </Component>
+        </Directory>
+        <Directory Id="dirE3465548908364B42A07B4D4DBE5E6DC" Name="Qt4ActiveQtServerProject">
+          <Directory Id="dir5604C84483F081D60B360106AAB40168" Name="1033">
+            <Component Id="cmpE4FC5D5AA42C2B0EBE68829673A0D064" Guid="*">
+              <File Id="filBABEB9E3D3232F9A09A17F02148ACF78" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4ActiveQtServerProject\1033\styles.css"/>
+            </Component>
+          </Directory>
+          <Directory Id="dirB8C98FF559EB7C3CB722B36D906AB91D" Name="html">
+            <Directory Id="dir50EB7A5D3C8B09F29D9B23ACEEAA75D3" Name="1031">
+              <Component Id="cmp80C370F88EA112E28EC7E068069A776F" Guid="*">
+                <File Id="filADA6EB88967D4A531F4AB62BBDC70F2C" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4ActiveQtServerProject\html\1031\default.htm"/>
+              </Component>
+              <Component Id="cmpA663298306DBF981D29FF5590E0CA62D" Guid="*">
+                <File Id="filEC6495DF66D50344F6C7D4252739DB14" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4ActiveQtServerProject\html\1031\Page_2.htm"/>
+              </Component>
+              <Component Id="cmpEE8A514EB5E40690C042BC54F34934F9" Guid="*">
+                <File Id="fil6C98A060C79BB5B0F992AC9F1516FDD6" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4ActiveQtServerProject\html\1031\Page_3.htm"/>
+              </Component>
+            </Directory>
+            <Directory Id="dir6554A04C9E849E59EA112A69B39C62E9" Name="1033">
+              <Component Id="cmpB88C3B3567D3D8A54845ABB51FD958C4" Guid="*">
+                <File Id="filCBE4BBED3419AA27C9907DE2D4FA9DE3" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4ActiveQtServerProject\html\1033\default.htm"/>
+              </Component>
+              <Component Id="cmpAEF095A803A575154CC178906BB2E9A0" Guid="*">
+                <File Id="fil28ABF7A9EF67BF7E82580ECB765C2B77" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4ActiveQtServerProject\html\1033\Page_2.htm"/>
+              </Component>
+              <Component Id="cmpA6D1B9259D53AC7E4A6DDFACF3A17EEC" Guid="*">
+                <File Id="filAB6EE688F3F6A92DFCA9A439EFE526D5" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4ActiveQtServerProject\html\1033\Page_3.htm"/>
+              </Component>
+            </Directory>
+          </Directory>
+          <Directory Id="dir208DBD730DE8577316BEC8653B09D53B" Name="images">
+            <Component Id="cmp4F5D98565A80322CE77E79BE0A6D7DF7" Guid="*">
+              <File Id="fil1829DC3EFAEDFA8B19FDBA6758B8317A" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4ActiveQtServerProject\images\Qt4ActiveQtServerProject.jpg"/>
+            </Component>
+          </Directory>
+          <Directory Id="dirE86778EAC70E52AF4EFD2AEDB2FFDB89" Name="scripts">
+            <Directory Id="dir4CF9F8AB7E77C6A43D682E8CFEB270F5" Name="1033">
+              <Component Id="cmp177E7341EFAA2FA1F08F70279696BBB8" Guid="*">
+                <File Id="filED9193F059BA8E4F30E1A5D8555BA35B" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4ActiveQtServerProject\scripts\1033\default.js"/>
+              </Component>
+            </Directory>
+          </Directory>
+          <Directory Id="dirA0124D2E692B3B65E2B191B82BAE81CB" Name="templates">
+            <Directory Id="dir9CFCFD0AE5D4788708733C3052C1F47D" Name="1033">
+              <Component Id="cmp2B0ED27F1C1DE882C8FB4024964E5923" Guid="*">
+                <File Id="filBB999F138B7DC6547382848C533FC9D2" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4ActiveQtServerProject\templates\1033\server.def"/>
+              </Component>
+              <Component Id="cmpFF0079ECD2840136EA6C913036CFC707" Guid="*">
+                <File Id="fil714CAD23528F17246FE88A62E9D6F81C" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4ActiveQtServerProject\templates\1033\server.ico"/>
+              </Component>
+              <Component Id="cmp5CD57E1FC5C99FF7683038271B6B94C6" Guid="*">
+                <File Id="fil190A9E4D4A73266ADE52F7406531093B" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4ActiveQtServerProject\templates\1033\server.rc"/>
+              </Component>
+              <Component Id="cmpD06FFFD22C07A31AD0756BE457D12A71" Guid="*">
+                <File Id="filF1F78D5E7C97F3124E304728A97B3F62" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4ActiveQtServerProject\templates\1033\source.cpp"/>
+              </Component>
+              <Component Id="cmp9D5EF3995183912FBC69524327425D0B" Guid="*">
+                <File Id="filB39226DD36D4EBEDE0002B0B20DE2CC2" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4ActiveQtServerProject\templates\1033\source.h"/>
+              </Component>
+              <Component Id="cmp5CBF0111BE53A817E3EB8FB4F5EE9D46" Guid="*">
+                <File Id="filF624BA8DFD63FA90C85B53F6A2111CF2" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4ActiveQtServerProject\templates\1033\stdafx.cpp"/>
+              </Component>
+              <Component Id="cmpE8FCC47C50979333D3E12328DAD207E4" Guid="*">
+                <File Id="filE99CFEDC18AC74688732DB0081320658" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4ActiveQtServerProject\templates\1033\stdafx.h"/>
+              </Component>
+              <Component Id="cmpA20138D39B61E9A0D77F058F315F553E" Guid="*">
+                <File Id="fil51A4118EEAEBA75E5AC1C30E5C674DA8" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4ActiveQtServerProject\templates\1033\widget.ui"/>
+              </Component>
+            </Directory>
+          </Directory>
+        </Directory>
+        <Directory Id="dir6093657EB1A1F681F353397335AE3FBD" Name="Qt4Class">
+          <Directory Id="dirF0FBE16AE4F78E263AA0495C482757DB" Name="1033">
+            <Component Id="cmp09A3F64A63F92FABFB42445C8D2A4539" Guid="*">
+              <File Id="fil8358AB3FAF77D84AF2E66A8998C429FF" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4Class\1033\styles.css"/>
+            </Component>
+          </Directory>
+          <Directory Id="dir4BD64FC0657BAF66CA97933E2D238E18" Name="html">
+            <Directory Id="dirFD986BB93A2DBCCC209375FA8D45A4D1" Name="1031">
+              <Component Id="cmpD1FFFAF81FB0625FC27D28E033F35C06" Guid="*">
+                <File Id="fil7DDEBDF1C05A759C0D47C0FF66862041" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4Class\html\1031\default.htm"/>
+              </Component>
+            </Directory>
+            <Directory Id="dir8EF27F48C990DFDD6356F415D65A6416" Name="1033">
+              <Component Id="cmp3A95614E1AA5BB6B67639ECDA8F93387" Guid="*">
+                <File Id="fil0862C7A63DCF4EA2E20A162021E508D7" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4Class\html\1033\default.htm"/>
+              </Component>
+            </Directory>
+          </Directory>
+          <Directory Id="dirC1E4A19C3F771FC5AEB0394E725845AC" Name="images">
+            <Component Id="cmpC33021313DE91DCD7AD6F6CDDBE65B03" Guid="*">
+              <File Id="fil75E35A0D9A137408BBC0585C10EAE273" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4Class\images\Qt4Class.gif"/>
+            </Component>
+          </Directory>
+          <Directory Id="dir8CA6130B9454B38C9270563EE4D0C053" Name="scripts">
+            <Directory Id="dirBF4C6F414427E2FA4CC4CC244365BF95" Name="1033">
+              <Component Id="cmpB3623501C6A4C6EFBF7FFEA729E9E266" Guid="*">
+                <File Id="filBD4FCD8D05F3D39788329AC3C13AAB66" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4Class\scripts\1033\default.js"/>
+              </Component>
+            </Directory>
+          </Directory>
+          <Directory Id="dir8A8B9191A2148CFC6E59D57B3836494F" Name="templates">
+            <Directory Id="dir8A37E547EA6A8C569307AD2CBF1B6B05" Name="1033">
+              <Component Id="cmp9DB7407BF62E6A26EDB02D6AA3A22458" Guid="*">
+                <File Id="filA3C1C0F77EFEDB9A14BE0057F6197F6F" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4Class\templates\1033\class.cpp"/>
+              </Component>
+              <Component Id="cmp98D708C5FFE680504B23E887853220DE" Guid="*">
+                <File Id="fil9CDC53A31786DCEE87055F5EFAD7A63A" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4Class\templates\1033\class.h"/>
+              </Component>
+            </Directory>
+          </Directory>
+        </Directory>
+        <Directory Id="dirBA63D74B056DFBE11AD6BFF82107D0A6" Name="Qt4ConsoleProject">
+          <Directory Id="dir0E2EEF81A57719BDCC95DD558EA8CE2A" Name="1033">
+            <Component Id="cmpB2FE2DD3CF39223D20EBD8FFDD409013" Guid="*">
+              <File Id="fil0F2B835BA55CF08BECB882F1F903F6DB" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4ConsoleProject\1033\styles.css"/>
+            </Component>
+          </Directory>
+          <Directory Id="dir49191D12DAF3DCAF33CAFDF482A181E6" Name="html">
+            <Directory Id="dir494D8BCA06EB815AEC5D1AF388ADE183" Name="1031">
+              <Component Id="cmp2F6AAF7F4969BED2F577F7526E88940F" Guid="*">
+                <File Id="fil1EE076EC4CC43FA16EB000AB55CCCD93" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4ConsoleProject\html\1031\default.htm"/>
+              </Component>
+              <Component Id="cmp18BB6A08C976BFC23012067E7738F944" Guid="*">
+                <File Id="fil795B18DE69AC907C68F7A3BD3A9C5096" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4ConsoleProject\html\1031\Page_2.htm"/>
+              </Component>
+            </Directory>
+            <Directory Id="dir267B83C51381A68CE8F7132DD1B50BF4" Name="1033">
+              <Component Id="cmpB24BFDDD7E84892E7A5B273603DAE2E2" Guid="*">
+                <File Id="filD1BE697146D93939787E1AC0826A1126" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4ConsoleProject\html\1033\default.htm"/>
+              </Component>
+              <Component Id="cmp303C23D2898F21F4BCC0958DAE0E9431" Guid="*">
+                <File Id="filA9254CF4562B0BAAC5072FC39F43BCC7" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4ConsoleProject\html\1033\Page_2.htm"/>
+              </Component>
+            </Directory>
+          </Directory>
+          <Directory Id="dir4FEAFBC5FF526E4537F37058C990203B" Name="images">
+            <Component Id="cmpAE4310958387BE9BE0D97D3C42ACD069" Guid="*">
+              <File Id="fil9C466FF24BF26EE9E14F62427959518B" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4ConsoleProject\images\Qt4ConsoleProject.jpg"/>
+            </Component>
+          </Directory>
+          <Directory Id="dirDAFAE9C8A8A550F9C2DFE8F1CFBA43BB" Name="scripts">
+            <Directory Id="dir28F29A49DDA571FE3B64BF66D7AE593A" Name="1033">
+              <Component Id="cmp5FC96920A96D82BF3C3C1072ADFA8944" Guid="*">
+                <File Id="fil4880612807DC6D1DC0CF3B0746AAA529" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4ConsoleProject\scripts\1033\default.js"/>
+              </Component>
+            </Directory>
+          </Directory>
+          <Directory Id="dirDA91375E90DFB8723E8BCF67EC7435C8" Name="templates">
+            <Directory Id="dirF6A2AF93573387C6F9B1DE9D8455474C" Name="1033">
+              <Component Id="cmpEE2874BA05E0EA9D410052DE0B908ABC" Guid="*">
+                <File Id="filD04E258B30189AA1BB331EF0CD1235CB" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4ConsoleProject\templates\1033\main.cpp"/>
+              </Component>
+              <Component Id="cmp0D1D5CD05DE0DDE7E19173F8DE3A8289" Guid="*">
+                <File Id="filF45C1B2C221970F7573C2E342283DF02" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4ConsoleProject\templates\1033\stdafx.cpp"/>
+              </Component>
+              <Component Id="cmp3EE1554158987D83FBE5B2BDF039A1EA" Guid="*">
+                <File Id="filFA74340B437CE426040A9412AA265B8B" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4ConsoleProject\templates\1033\stdafx.h"/>
+              </Component>
+            </Directory>
+          </Directory>
+        </Directory>
+        <Directory Id="dir53D6C3F9E779B2DF5464F3737B168B0A" Name="Qt4DesignerPluginProject">
+          <Directory Id="dir64D5742F85FA56353F7940A5B4C39F72" Name="1033">
+            <Component Id="cmp84ED37416C593F4A334FF0DCBA6D24BA" Guid="*">
+              <File Id="fil844D1129B4FBF1FF87F33AFE5173D50E" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4DesignerPluginProject\1033\styles.css"/>
+            </Component>
+          </Directory>
+          <Directory Id="dirE5779514DF683E0CF9A06034CFC7207D" Name="html">
+            <Directory Id="dirE24761057C82EEF619E5F56BFC3C64B7" Name="1031">
+              <Component Id="cmp0C4D52E3533506266FFA4DA946AE5A40" Guid="*">
+                <File Id="fil5CD1ACE89D34768081194EE31E91B62D" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4DesignerPluginProject\html\1031\default.htm"/>
+              </Component>
+              <Component Id="cmp25583EE91DE58BB40CC9211A8B07FA84" Guid="*">
+                <File Id="fil995B849ABDF238E1D9894BF67718E4CF" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4DesignerPluginProject\html\1031\Page_2.htm"/>
+              </Component>
+              <Component Id="cmpA8247D3F37B43A5884395A28D3B35FC4" Guid="*">
+                <File Id="filE75276502A1E9148BB0125ACE643F302" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4DesignerPluginProject\html\1031\Page_3.htm"/>
+              </Component>
+            </Directory>
+            <Directory Id="dir55E4D6FAE141FCF15E1DF1532005D9E4" Name="1033">
+              <Component Id="cmpB0BD86E8560C597EDB8F6191C6F11097" Guid="*">
+                <File Id="fil06156324175F423831B3B816851CEC9B" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4DesignerPluginProject\html\1033\default.htm"/>
+              </Component>
+              <Component Id="cmp916EC93F0DEF7959F1463BE98D13B6DD" Guid="*">
+                <File Id="filE963F0AF4F3ADB97BC5C7B67420CC07D" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4DesignerPluginProject\html\1033\Page_2.htm"/>
+              </Component>
+              <Component Id="cmp4A5B6FDDAC4DEE8B175973EA7478C5BA" Guid="*">
+                <File Id="fil194CD49760DE3F1667C562C7932FAE46" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4DesignerPluginProject\html\1033\Page_3.htm"/>
+              </Component>
+            </Directory>
+          </Directory>
+          <Directory Id="dirE7CC5CD606ACCF039C0079B9AD572F03" Name="images">
+            <Component Id="cmp4CDE0ACB13AA5B2D3C53FB19A32C8429" Guid="*">
+              <File Id="fil8D5F36ABDBD41D24040012077695923E" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4DesignerPluginProject\images\Qt4DesignerPluginProject.jpg"/>
+            </Component>
+          </Directory>
+          <Directory Id="dirF753D976763E1B1174C3A6A5E0CFF515" Name="scripts">
+            <Directory Id="dir29B3924671C51FDB6D9FA9B6B6072CAA" Name="1033">
+              <Component Id="cmpF77CF410766826F1313DAAAD51EFA4DB" Guid="*">
+                <File Id="fil336572DB4F5B63FB67E5D588440B2E97" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4DesignerPluginProject\scripts\1033\default.js"/>
+              </Component>
+            </Directory>
+          </Directory>
+          <Directory Id="dir78D12AA65B746706071A646B5208B320" Name="templates">
+            <Directory Id="dirAC17334BB118843CCC404B5F9121C4E2" Name="1033">
+              <Component Id="cmpFCD42D98C8F8CA81827740B1A81BA20D" Guid="*">
+                <File Id="fil3465F8DA5DF56C31596FF6178D5820B7" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4DesignerPluginProject\templates\1033\mywidget.cpp"/>
+              </Component>
+              <Component Id="cmpABFB8D4E049E58D8F64B10624F3D9944" Guid="*">
+                <File Id="filDF7D035C621EFC34E11AA6A662243BF1" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4DesignerPluginProject\templates\1033\mywidget.h"/>
+              </Component>
+              <Component Id="cmp76EA7437796EA022E23EE0A468BA26FB" Guid="*">
+                <File Id="fil3588AFA6B1AF8939F8124522A144D25B" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4DesignerPluginProject\templates\1033\plugin.cpp"/>
+              </Component>
+              <Component Id="cmp5BB32A907DBB802E10503A18A153CDAF" Guid="*">
+                <File Id="fil3BA0310DE45134116870BC0B134C4D11" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4DesignerPluginProject\templates\1033\plugin.h"/>
+              </Component>
+              <Component Id="cmpF6898922C99894B4EA5A0AD3760234FB" Guid="*">
+                <File Id="fil1BE80D9F365EF1470829E7D97DF73AE3" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4DesignerPluginProject\templates\1033\stdafx.cpp"/>
+              </Component>
+              <Component Id="cmpB57DB4E8308E39B2EB08EC4E2F09BCEA" Guid="*">
+                <File Id="fil1EE7A40CDE4B2957D88FE80E19851DA0" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4DesignerPluginProject\templates\1033\stdafx.h"/>
+              </Component>
+            </Directory>
+          </Directory>
+        </Directory>
+        <Directory Id="dirD35915B92294B625AD9108856AE629AF" Name="Qt4GuiClass">
+          <Directory Id="dir19BF25C67126753A008D75C90B845E41" Name="1033">
+            <Component Id="cmpFA63B816FC29671C103B42711B664FFC" Guid="*">
+              <File Id="fil104270B2A2DB7048B4A4A18F6426FF75" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4GuiClass\1033\styles.css"/>
+            </Component>
+          </Directory>
+          <Directory Id="dir16C44C7EDA75DEE9800911CC0490B151" Name="html">
+            <Directory Id="dir09634B2CC656EC78B772BFA5CA201592" Name="1031">
+              <Component Id="cmp291630B3EE928DF27E5F5FC969AF8E18" Guid="*">
+                <File Id="fil1647ADCEB5587B445234E5B03C6F521E" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4GuiClass\html\1031\default.htm"/>
+              </Component>
+            </Directory>
+            <Directory Id="dir2FD60F4973BA6ADC8819F0C7B7F638F7" Name="1033">
+              <Component Id="cmp5E70F278F5BA6631065997BF6A0723CA" Guid="*">
+                <File Id="fil32299D53E72DA373598F51B765A07061" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4GuiClass\html\1033\default.htm"/>
+              </Component>
+            </Directory>
+          </Directory>
+          <Directory Id="dir49762E79D08EA2D943BE35B380B312A4" Name="images">
+            <Component Id="cmpA7E983B3ECDC51C05E94F852AC2FB681" Guid="*">
+              <File Id="filA6BA171251286287808ACE56762F5E29" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4GuiClass\images\Qt4GuiClass.gif"/>
+            </Component>
+          </Directory>
+          <Directory Id="dirA25B206EB64A3B9CD07497E7C9C97260" Name="scripts">
+            <Directory Id="dir20F0032663A7F50449EFEFBCAC7B2B0C" Name="1033">
+              <Component Id="cmp7C5D4DE1C2554F41217DD7205F0E8AC4" Guid="*">
+                <File Id="fil9F4A3F18F990479915A3546DCDDD5BA7" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4GuiClass\scripts\1033\default.js"/>
+              </Component>
+            </Directory>
+          </Directory>
+          <Directory Id="dirB8FBEF4531776D14D2D7137C4037FCBD" Name="templates">
+            <Directory Id="dir83C9912645C92D9138A4F4AA7ADED4EE" Name="1033">
+              <Component Id="cmpDCAEC793DB72237CC79B4A5D7A8CF9C0" Guid="*">
+                <File Id="filD6A5647527EA8305B1DF8277DA4EB3D5" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4GuiClass\templates\1033\class.cpp"/>
+              </Component>
+              <Component Id="cmp774258C6483CDC1C3CFB1CEC2D6FE6F4" Guid="*">
+                <File Id="filA2AC5B56849532D5A61D7711B03CB9F3" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4GuiClass\templates\1033\class.h"/>
+              </Component>
+              <Component Id="cmpD2B0EE7A4A5083EF3B4D3BFD563789C6" Guid="*">
+                <File Id="filEF81C7044769E139E8D49C7457C09CFE" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4GuiClass\templates\1033\form.ui"/>
+              </Component>
+              <Component Id="cmpA1F95855D149D79284E994553105C228" Guid="*">
+                <File Id="fil9678E79ED3CEE120CBE5F01B0FBAA7E0" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4GuiClass\templates\1033\mi_class.cpp"/>
+              </Component>
+              <Component Id="cmp37A117A0F562C8174F7D0CFC29EEB66F" Guid="*">
+                <File Id="filC2813970F94CE83916308902642A9F62" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4GuiClass\templates\1033\mi_class.h"/>
+              </Component>
+              <Component Id="cmp2A5AD6BE11EFBD16C42B82B4A51BCF90" Guid="*">
+                <File Id="filA2D912393B2DE3BCFB83C2432D51EBA2" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4GuiClass\templates\1033\mp_class.cpp"/>
+              </Component>
+              <Component Id="cmp873655B6407606AAFF419414B9415D05" Guid="*">
+                <File Id="fil1C17EA6E5E9974D2D14925F1C08064B8" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4GuiClass\templates\1033\mp_class.h"/>
+              </Component>
+            </Directory>
+          </Directory>
+        </Directory>
+        <Directory Id="dir32F0E18F9949199CE2A966A6B1EB313E" Name="Qt4GuiProject">
+          <Directory Id="dir4A5BE17D2D867EF494DC70AB8EC64085" Name="1033">
+            <Component Id="cmp4072F1885AB3DB979977EA9858A4C60D" Guid="*">
+              <File Id="fil6346801594DB4FA9003D582DE2214DE9" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4GuiProject\1033\styles.css"/>
+            </Component>
+          </Directory>
+          <Directory Id="dir1C1B1B30B19B508C3DF6FCDFFB639CF7" Name="html">
+            <Directory Id="dirC42BC89767C2513A78791DCB90EDF356" Name="1031">
+              <Component Id="cmp4051FE7EC6CCD424149467DABB94298C" Guid="*">
+                <File Id="fil41799EF55FA7D4EE09018C978D566CA2" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4GuiProject\html\1031\default.htm"/>
+              </Component>
+              <Component Id="cmp5187A2956BF1F7E4A882A38161A553C3" Guid="*">
+                <File Id="fil62DDA7ABFE4679495C710E325AC6307C" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4GuiProject\html\1031\Page_2.htm"/>
+              </Component>
+              <Component Id="cmp07B65645F2DC2F48E9583912E04C03D1" Guid="*">
+                <File Id="fil934902112238410ED70BEC8AA7310FE2" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4GuiProject\html\1031\Page_3.htm"/>
+              </Component>
+            </Directory>
+            <Directory Id="dirA719F45D70BE28F48FBC337C78E9B663" Name="1033">
+              <Component Id="cmpBBBF3267C130BEE374BCED4F5B7DD967" Guid="*">
+                <File Id="fil28588B08FE30D23D41DB5A731234646E" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4GuiProject\html\1033\default.htm"/>
+              </Component>
+              <Component Id="cmp2649243845AE6733FA4B51FB4CCA99EB" Guid="*">
+                <File Id="filD3E101F698866743F6D0B2F24E0F5FA5" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4GuiProject\html\1033\Page_2.htm"/>
+              </Component>
+              <Component Id="cmp8DD9403C92F5593FC56E2BE604343681" Guid="*">
+                <File Id="fil216EFB25CF220FAE6E09B1B11F18DF07" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4GuiProject\html\1033\Page_3.htm"/>
+              </Component>
+            </Directory>
+          </Directory>
+          <Directory Id="dir22DE942C64E9A06C3DCE491033D8C050" Name="images">
+            <Component Id="cmp49B51C3380124D300A3F3A993206E81A" Guid="*">
+              <File Id="filCB2E7B12504019D11CBA5E579E22DC55" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4GuiProject\images\Qt4GuiProject.jpg"/>
+            </Component>
+          </Directory>
+          <Directory Id="dir2AF138E5435CD61041BBBF1A98DC4C27" Name="scripts">
+            <Directory Id="dir8854AFE664C78EBA65BD339D0A5A41A7" Name="1033">
+              <Component Id="cmp7647E3C4DAA9D62FB37D4EE5DB56C641" Guid="*">
+                <File Id="filFE80895CA036E42EF120D449F5E7138B" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4GuiProject\scripts\1033\default.js"/>
+              </Component>
+            </Directory>
+          </Directory>
+          <Directory Id="dirB37086FC9FCFD6D6A4857569F7877549" Name="templates">
+            <Directory Id="dir77E127C62408C7AD0FBEF3FFE9A54E92" Name="1033">
+              <Component Id="cmp4F6E0C5CF06D595E467EF3C587DC96D5" Guid="*">
+                <File Id="fil7D8EDC99400BBF9832457F53D6F28515" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4GuiProject\templates\1033\main.cpp"/>
+              </Component>
+              <Component Id="cmpAE801D1515906E9880EAEDBB668D233B" Guid="*">
+                <File Id="filFD18A52C789D9C716C93AE1E48A681B1" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4GuiProject\templates\1033\mywidget.cpp"/>
+              </Component>
+              <Component Id="cmpA6E4DE0E83CE11BBA20343F09B01F74D" Guid="*">
+                <File Id="filFAE59FE0D5CEB1F494AC897B09F7DD0F" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4GuiProject\templates\1033\mywidget.h"/>
+              </Component>
+              <Component Id="cmp21952672B0661897B13ADC7782C0DC42" Guid="*">
+                <File Id="filB5A6CAD26C570A4D97C646CBA2A4BC66" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4GuiProject\templates\1033\stdafx.cpp"/>
+              </Component>
+              <Component Id="cmp44CC43F6921F93C35CDF7D0B6C19B2DD" Guid="*">
+                <File Id="filF6F7AD201E8EF4D4FC9D2D18F3B6E27C" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4GuiProject\templates\1033\stdafx.h"/>
+              </Component>
+              <Component Id="cmp9AD6D3891DD8082CF45C4526CB8B0200" Guid="*">
+                <File Id="filBB1030C22A88435E60AF15094E8B2C21" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4GuiProject\templates\1033\widget.ui"/>
+              </Component>
+              <Component Id="cmpEC8DD0C2E747C5CD35CCA2D2E4CDD62A" Guid="*">
+                <File Id="fil4CEDD2B9BAF709B5A0D2EDAC5F1F4B01" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4GuiProject\templates\1033\winapp.ico"/>
+              </Component>
+            </Directory>
+          </Directory>
+        </Directory>
+        <Directory Id="dirE0B124BA36C66A7705BB2842A6D86912" Name="Qt4LibProject">
+          <Directory Id="dirA75C269138700045CABAB4BEBE41F06B" Name="1033">
+            <Component Id="cmp3A9535C0C0A160E2D0E695878F2ACB6A" Guid="*">
+              <File Id="fil0A46C6E4522C09A965DA1403B83F2C39" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4LibProject\1033\styles.css"/>
+            </Component>
+          </Directory>
+          <Directory Id="dirBA26E43EF37741861A494A1D1FA4AEB6" Name="html">
+            <Directory Id="dirB775F47F824003895B6D04CBA8BA9D2B" Name="1031">
+              <Component Id="cmpA58021EA9A77822C7D01C3BCB460664A" Guid="*">
+                <File Id="fil047F3C5CB5226E94ED855240D396EEA9" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4LibProject\html\1031\default.htm"/>
+              </Component>
+              <Component Id="cmp2909F9D87B7223C5FE6A4804BEBBFDBE" Guid="*">
+                <File Id="fil94C90BFE95B51490AC88BCC05C13D5A0" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4LibProject\html\1031\Page_2.htm"/>
+              </Component>
+              <Component Id="cmp036C824D9375CB71421E6A5989F2EAE6" Guid="*">
+                <File Id="filBA4F1E325C4877252097B5C61B8B04E0" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4LibProject\html\1031\Page_3.htm"/>
+              </Component>
+            </Directory>
+            <Directory Id="dir2768789275D509C148CE7ECDC9302BA9" Name="1033">
+              <Component Id="cmp1DD5C362FEAB8FC7A34CC0A2B9971642" Guid="*">
+                <File Id="filC33984BB9E326DBCE01E135490FB5060" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4LibProject\html\1033\default.htm"/>
+              </Component>
+              <Component Id="cmp2776639BF9CCB5D0344CABA594DE72FE" Guid="*">
+                <File Id="fil10F6AB286300EEF56EE659E2DE609942" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4LibProject\html\1033\Page_2.htm"/>
+              </Component>
+              <Component Id="cmp142FC25FA2330A4BE519C5C466E8FB6C" Guid="*">
+                <File Id="filC3962CFC0CC82542085F7E9E74DE8125" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4LibProject\html\1033\Page_3.htm"/>
+              </Component>
+            </Directory>
+          </Directory>
+          <Directory Id="dir7577A248D52A7BE6104C81001810549E" Name="images">
+            <Component Id="cmp87F21C25998E4BD65315718C13E6A379" Guid="*">
+              <File Id="fil0137DC2BCBC5C5D7025DF9577788BD1F" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4LibProject\images\Qt4LibProject.jpg"/>
+            </Component>
+          </Directory>
+          <Directory Id="dir7F5D59B3ED953430CA6E954C32B388F8" Name="scripts">
+            <Directory Id="dir776AE819BFDC13632F35F25E05FC6F7E" Name="1033">
+              <Component Id="cmp4B5E11109F5380339765AD626D4C81F5" Guid="*">
+                <File Id="filA101925895DFBA01B9AC2614AFE37984" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4LibProject\scripts\1033\default.js"/>
+              </Component>
+            </Directory>
+          </Directory>
+          <Directory Id="dir9D29613EDACB8BCED8D9EDFFDDEB6447" Name="templates">
+            <Directory Id="dir5B0462A5311C7F3F8B6ADB0513506E60" Name="1033">
+              <Component Id="cmp38D9F25204110B8B17FCA5FD4AF1C0F5" Guid="*">
+                <File Id="fil8FAEA67033A7FA5B92853280B2631E0E" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4LibProject\templates\1033\defines.h"/>
+              </Component>
+              <Component Id="cmpF2279720DEB68A563F1209E64494E8D9" Guid="*">
+                <File Id="filFBB035AA6FB7D5C0739B147A8382029D" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4LibProject\templates\1033\header.h"/>
+              </Component>
+              <Component Id="cmp9D055CA6A2FA4569E5BE4111CD98ACD1" Guid="*">
+                <File Id="fil867133F250DE1E3D4E3948ED94498668" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4LibProject\templates\1033\source.cpp"/>
+              </Component>
+              <Component Id="cmp546688945D89C3852B8825BBF4FFB747" Guid="*">
+                <File Id="filD94C23E3E0D2920DF8EC3E141774F2E7" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4LibProject\templates\1033\stdafx.cpp"/>
+              </Component>
+              <Component Id="cmp71C924336626360C8D7DBD86A8C090C6" Guid="*">
+                <File Id="fil600AF6CC4FA053125DA2A9001B47F3D8" KeyPath="yes" Source="$(var.Qt4VSAddinSource)\wizards\Qt4LibProject\templates\1033\stdafx.h"/>
+              </Component>
+            </Directory>
+          </Directory>
+        </Directory>
+      </Directory>
+    </DirectoryRef>
+  </Fragment>
+  <Fragment>
+    <ComponentGroup Id="cgQt4VSAddin">
+      <ComponentRef Id="cmpC6C7601EB67D1BFFE8EB1C1B87103751"/>
+      <ComponentRef Id="cmp3ABEEAAB7ACF4416811706599AA6C055"/>
+      <ComponentRef Id="cmp66CD5580D77D9E1290005BCB91A9B86B"/>
+      <ComponentRef Id="cmp3C96AD06F7556E74B8288855ED8049AD"/>
+      <ComponentRef Id="cmp9B47619F8508952CDB4686EE0364CCFD"/>
+      <ComponentRef Id="cmp70E8DBE77778E140F3D3BA3C2EB3432C"/>
+      <ComponentRef Id="cmp528E207A842E83130D845ECB6275063F"/>
+      <ComponentRef Id="cmp0D7FBE4BC8AAF15C69E24E0D5F154DB3"/>
+      <ComponentRef Id="cmpEC9B9FF425619B22CE77F4164A4EFBA0"/>
+      <ComponentRef Id="cmpBF909DF97F234805005FD8363DA2673C"/>
+      <ComponentRef Id="cmp7A62FF3E5346D968B4B1191C91D781BC"/>
+      <ComponentRef Id="cmp6DBB8C6A232C293548FC9CFAD1684DB7"/>
+      <ComponentRef Id="cmp7A3B585528B0407BEB70DE02C7B87C24"/>
+      <ComponentRef Id="cmp6B50CA1443CA858C301DE35D40F553FF"/>
+      <ComponentRef Id="cmp1E2D9DD7F355B7A4659FAD03C1528021"/>
+      <ComponentRef Id="cmpB35C422520C8B509D316782DD781FCB7"/>
+      <ComponentRef Id="cmpB4669D1C9442EEB9B1BB935BE7DB146E"/>
+      <ComponentRef Id="cmp09763079FDEDE0B30C681BD2639B4CD5"/>
+      <ComponentRef Id="cmpDC596507BEA3DFB2267A041A95BDBDD5"/>
+      <ComponentRef Id="cmpF521CCDF902E916621B684D4E0E9F0A2"/>
+      <ComponentRef Id="cmp668212643BA2E44B5205AEF191C3430A"/>
+      <ComponentRef Id="cmp38CF14FDB58040B183E9C3E4FD5FF8AC"/>
+      <ComponentRef Id="cmp8E7BAFC5F96AA93EE9FDBEE17EFA61BE"/>
+      <ComponentRef Id="cmpB1DA61274A3565DAC673E7864490CDA2"/>
+      <ComponentRef Id="cmpF42C433F2B2C1834E83807C4279C749C"/>
+      <ComponentRef Id="cmp527C7E28A98458ABF4E922FB47396578"/>
+      <ComponentRef Id="cmpE4FC5D5AA42C2B0EBE68829673A0D064"/>
+      <ComponentRef Id="cmp80C370F88EA112E28EC7E068069A776F"/>
+      <ComponentRef Id="cmpA663298306DBF981D29FF5590E0CA62D"/>
+      <ComponentRef Id="cmpEE8A514EB5E40690C042BC54F34934F9"/>
+      <ComponentRef Id="cmpB88C3B3567D3D8A54845ABB51FD958C4"/>
+      <ComponentRef Id="cmpAEF095A803A575154CC178906BB2E9A0"/>
+      <ComponentRef Id="cmpA6D1B9259D53AC7E4A6DDFACF3A17EEC"/>
+      <ComponentRef Id="cmp4F5D98565A80322CE77E79BE0A6D7DF7"/>
+      <ComponentRef Id="cmp177E7341EFAA2FA1F08F70279696BBB8"/>
+      <ComponentRef Id="cmp2B0ED27F1C1DE882C8FB4024964E5923"/>
+      <ComponentRef Id="cmpFF0079ECD2840136EA6C913036CFC707"/>
+      <ComponentRef Id="cmp5CD57E1FC5C99FF7683038271B6B94C6"/>
+      <ComponentRef Id="cmpD06FFFD22C07A31AD0756BE457D12A71"/>
+      <ComponentRef Id="cmp9D5EF3995183912FBC69524327425D0B"/>
+      <ComponentRef Id="cmp5CBF0111BE53A817E3EB8FB4F5EE9D46"/>
+      <ComponentRef Id="cmpE8FCC47C50979333D3E12328DAD207E4"/>
+      <ComponentRef Id="cmpA20138D39B61E9A0D77F058F315F553E"/>
+      <ComponentRef Id="cmp09A3F64A63F92FABFB42445C8D2A4539"/>
+      <ComponentRef Id="cmpD1FFFAF81FB0625FC27D28E033F35C06"/>
+      <ComponentRef Id="cmp3A95614E1AA5BB6B67639ECDA8F93387"/>
+      <ComponentRef Id="cmpC33021313DE91DCD7AD6F6CDDBE65B03"/>
+      <ComponentRef Id="cmpB3623501C6A4C6EFBF7FFEA729E9E266"/>
+      <ComponentRef Id="cmp9DB7407BF62E6A26EDB02D6AA3A22458"/>
+      <ComponentRef Id="cmp98D708C5FFE680504B23E887853220DE"/>
+      <ComponentRef Id="cmpB2FE2DD3CF39223D20EBD8FFDD409013"/>
+      <ComponentRef Id="cmp2F6AAF7F4969BED2F577F7526E88940F"/>
+      <ComponentRef Id="cmp18BB6A08C976BFC23012067E7738F944"/>
+      <ComponentRef Id="cmpB24BFDDD7E84892E7A5B273603DAE2E2"/>
+      <ComponentRef Id="cmp303C23D2898F21F4BCC0958DAE0E9431"/>
+      <ComponentRef Id="cmpAE4310958387BE9BE0D97D3C42ACD069"/>
+      <ComponentRef Id="cmp5FC96920A96D82BF3C3C1072ADFA8944"/>
+      <ComponentRef Id="cmpEE2874BA05E0EA9D410052DE0B908ABC"/>
+      <ComponentRef Id="cmp0D1D5CD05DE0DDE7E19173F8DE3A8289"/>
+      <ComponentRef Id="cmp3EE1554158987D83FBE5B2BDF039A1EA"/>
+      <ComponentRef Id="cmp84ED37416C593F4A334FF0DCBA6D24BA"/>
+      <ComponentRef Id="cmp0C4D52E3533506266FFA4DA946AE5A40"/>
+      <ComponentRef Id="cmp25583EE91DE58BB40CC9211A8B07FA84"/>
+      <ComponentRef Id="cmpA8247D3F37B43A5884395A28D3B35FC4"/>
+      <ComponentRef Id="cmpB0BD86E8560C597EDB8F6191C6F11097"/>
+      <ComponentRef Id="cmp916EC93F0DEF7959F1463BE98D13B6DD"/>
+      <ComponentRef Id="cmp4A5B6FDDAC4DEE8B175973EA7478C5BA"/>
+      <ComponentRef Id="cmp4CDE0ACB13AA5B2D3C53FB19A32C8429"/>
+      <ComponentRef Id="cmpF77CF410766826F1313DAAAD51EFA4DB"/>
+      <ComponentRef Id="cmpFCD42D98C8F8CA81827740B1A81BA20D"/>
+      <ComponentRef Id="cmpABFB8D4E049E58D8F64B10624F3D9944"/>
+      <ComponentRef Id="cmp76EA7437796EA022E23EE0A468BA26FB"/>
+      <ComponentRef Id="cmp5BB32A907DBB802E10503A18A153CDAF"/>
+      <ComponentRef Id="cmpF6898922C99894B4EA5A0AD3760234FB"/>
+      <ComponentRef Id="cmpB57DB4E8308E39B2EB08EC4E2F09BCEA"/>
+      <ComponentRef Id="cmpFA63B816FC29671C103B42711B664FFC"/>
+      <ComponentRef Id="cmp291630B3EE928DF27E5F5FC969AF8E18"/>
+      <ComponentRef Id="cmp5E70F278F5BA6631065997BF6A0723CA"/>
+      <ComponentRef Id="cmpA7E983B3ECDC51C05E94F852AC2FB681"/>
+      <ComponentRef Id="cmp7C5D4DE1C2554F41217DD7205F0E8AC4"/>
+      <ComponentRef Id="cmpDCAEC793DB72237CC79B4A5D7A8CF9C0"/>
+      <ComponentRef Id="cmp774258C6483CDC1C3CFB1CEC2D6FE6F4"/>
+      <ComponentRef Id="cmpD2B0EE7A4A5083EF3B4D3BFD563789C6"/>
+      <ComponentRef Id="cmpA1F95855D149D79284E994553105C228"/>
+      <ComponentRef Id="cmp37A117A0F562C8174F7D0CFC29EEB66F"/>
+      <ComponentRef Id="cmp2A5AD6BE11EFBD16C42B82B4A51BCF90"/>
+      <ComponentRef Id="cmp873655B6407606AAFF419414B9415D05"/>
+      <ComponentRef Id="cmp4072F1885AB3DB979977EA9858A4C60D"/>
+      <ComponentRef Id="cmp4051FE7EC6CCD424149467DABB94298C"/>
+      <ComponentRef Id="cmp5187A2956BF1F7E4A882A38161A553C3"/>
+      <ComponentRef Id="cmp07B65645F2DC2F48E9583912E04C03D1"/>
+      <ComponentRef Id="cmpBBBF3267C130BEE374BCED4F5B7DD967"/>
+      <ComponentRef Id="cmp2649243845AE6733FA4B51FB4CCA99EB"/>
+      <ComponentRef Id="cmp8DD9403C92F5593FC56E2BE604343681"/>
+      <ComponentRef Id="cmp49B51C3380124D300A3F3A993206E81A"/>
+      <ComponentRef Id="cmp7647E3C4DAA9D62FB37D4EE5DB56C641"/>
+      <ComponentRef Id="cmp4F6E0C5CF06D595E467EF3C587DC96D5"/>
+      <ComponentRef Id="cmpAE801D1515906E9880EAEDBB668D233B"/>
+      <ComponentRef Id="cmpA6E4DE0E83CE11BBA20343F09B01F74D"/>
+      <ComponentRef Id="cmp21952672B0661897B13ADC7782C0DC42"/>
+      <ComponentRef Id="cmp44CC43F6921F93C35CDF7D0B6C19B2DD"/>
+      <ComponentRef Id="cmp9AD6D3891DD8082CF45C4526CB8B0200"/>
+      <ComponentRef Id="cmpEC8DD0C2E747C5CD35CCA2D2E4CDD62A"/>
+      <ComponentRef Id="cmp3A9535C0C0A160E2D0E695878F2ACB6A"/>
+      <ComponentRef Id="cmpA58021EA9A77822C7D01C3BCB460664A"/>
+      <ComponentRef Id="cmp2909F9D87B7223C5FE6A4804BEBBFDBE"/>
+      <ComponentRef Id="cmp036C824D9375CB71421E6A5989F2EAE6"/>
+      <ComponentRef Id="cmp1DD5C362FEAB8FC7A34CC0A2B9971642"/>
+      <ComponentRef Id="cmp2776639BF9CCB5D0344CABA594DE72FE"/>
+      <ComponentRef Id="cmp142FC25FA2330A4BE519C5C466E8FB6C"/>
+      <ComponentRef Id="cmp87F21C25998E4BD65315718C13E6A379"/>
+      <ComponentRef Id="cmp4B5E11109F5380339765AD626D4C81F5"/>
+      <ComponentRef Id="cmp38D9F25204110B8B17FCA5FD4AF1C0F5"/>
+      <ComponentRef Id="cmpF2279720DEB68A563F1209E64494E8D9"/>
+      <ComponentRef Id="cmp9D055CA6A2FA4569E5BE4111CD98ACD1"/>
+      <ComponentRef Id="cmp546688945D89C3852B8825BBF4FFB747"/>
+      <ComponentRef Id="cmp71C924336626360C8D7DBD86A8C090C6"/>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

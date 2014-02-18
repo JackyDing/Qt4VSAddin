@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WixLocalization Culture="en-us" xmlns="http://schemas.microsoft.com/wix/2006/localization">
+  <String Id="WelcomeDlg_Title">Qt4 Visual Studio Add-in 1.1.12 Setup Wizard</String>
+  <String Id="WelcomeDlgTitle">{\WixUI_Font_Bigger}Welcome to the Qt4 Visual Studio Add-in 1.1.12 Setup</String>
+	<String Id="WelcomeDlgDescription">{\WixUI_Font_Normal}This wizard will guide you through the installation of Qt4 Visual Studio Add-in 1.1.12.&#xa;&#xa;It is recommended that you close all other applications before starting Setup. This will make it possible to update relevant system files without having to reboot your computer.Click Next to continue.</String>
+  <String Id="LicenseAgreementDlg_Title">Qt4 Visual Studio Add-in 1.1.12 Setup Wizard</String>
+  <String Id="LicenseAgreementDlgDescription">{\WixUI_Font_Normal}Please review the license terms before installing Qt4 Visual Studio Add-in 1.1.12.</String>
+  <String Id="LicenseAgreementDlgTitle">{\WixUI_Font_Title}License Agreement</String>
+  <String Id="CustomizeDlg_Title">Qt4 Visual Studio Add-in 1.1.12 Setup Wizard</String>
+  <String Id="MaintenanceWelcomeDlg_Title">Qt4 Visual Studio Add-in 1.1.12 Setup Wizard</String>
+  <String Id="VerifyReadyDlg_Title">Qt4 Visual Studio Add-in 1.1.12 Setup Wizard</String>
+  <String Id="MaintenanceTypeDlg_Title">Qt4 Visual Studio Add-in 1.1.12 Setup Wizard</String>
+  <String Id="ExitDialog_Title">Qt4 Visual Studio Add-in 1.1.12 Setup Wizard</String>
+  <String Id="CancelDlg_Title">Qt4 Visual Studio Add-in 1.1.12 Setup Wizard</String>
+  <String Id="UserExit_Title">Qt4 Visual Studio Add-in 1.1.12 Setup Wizard</String>
+  <String Id="BrowseDlg_Title">Qt4 Visual Studio Add-in 1.1.12 Setup Wizard</String>
+  <String Id="DiskCostDlg_Title">Qt4 Visual Studio Add-in 1.1.12 Setup Wizard</String>
+  <String Id="ErrorDlg_Title">Qt4 Visual Studio Add-in 1.1.12 Setup Wizard</String>
+  <String Id="PrepareDlg_Title">Qt4 Visual Studio Add-in 1.1.12 Setup Wizard</String>
+</WixLocalization>
