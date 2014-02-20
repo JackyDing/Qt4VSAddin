@@ -148,7 +148,7 @@ namespace Qt4VSAddin
         private void okButton_Click(object sender, EventArgs e)
         {
             qtSettings.SaveSettings();
-            saveModules();
+            SaveModules();
             this.okButton.DialogResult = DialogResult.OK;
             this.Close();
         }
@@ -164,7 +164,7 @@ namespace Qt4VSAddin
             }
         }
 
-        private void saveModules()
+        private void SaveModules()
         {
             qtProject = QtProject.Create(project);
             for (int i = 0; i < moduleMap.Count; ++i)

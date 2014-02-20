@@ -73,7 +73,7 @@ namespace Digia.Qt4ProjectLib
         public static QtProject Create(EnvDTE.Project project)
         {
             QtProject qtProject = null;
-            if (!instances.TryGetValue(project, out qtProject))
+            if (project != null && !instances.TryGetValue(project, out qtProject))
             {
                 qtProject = new QtProject(project);
                 instances.Add(project, qtProject);
