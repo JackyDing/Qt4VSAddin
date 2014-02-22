@@ -81,6 +81,38 @@ namespace Digia.Qt4ProjectLib
             return qtProject;
         }
 
+#if VS2013
+        public static VCFile Update(QtProject qtPrj, VCFile vcFile)
+        {
+            qtPrj.VCProject.Save();
+            string prjPath = qtPrj.Project.FullName;
+            string itemPath = vcFile.FullPath;
+            var documents = new List<string>();
+            foreach (Document document in qtPrj.dte.Documents)
+            {
+                if (document.Path != itemPath)
+                {
+                    documents.Add(document.Path);
+                }
+            }
+            instances.Remove(qtPrj.envPro);
+            qtPrj.dte.Solution.Remove(qtPrj.Project);
+            qtPrj.envPro = qtPrj.dte.Solution.AddFromFile(prjPath, false);
+            instances.Add(qtPrj.envPro, qtPrj);
+            foreach (string document in documents)
+            {
+                if (document != itemPath)
+                {
+                    qtPrj.dte.ItemOperations.OpenFile(document);
+                }
+            }
+            qtPrj.dte.ItemOperations.OpenFile(itemPath);
+            qtPrj.vcPro = qtPrj.envPro.Object as VCProject;
+            vcFile = (qtPrj.vcPro.Files as IVCCollection).Item(itemPath) as VCFile;
+            return vcFile;
+        }
+#endif
+
         public static void ClearInstances()
         {
             instances.Clear();
@@ -913,6 +945,8 @@ namespace Digia.Qt4ProjectLib
         /// <param name="file">file</param>
         public void AddMocStep(VCFile file)
         {
+            
+            string oldItemType = file.ItemType;
             try
             {
                 string mocFileName = GetMocFileName(file.FullPath);
@@ -931,12 +965,10 @@ namespace Digia.Qt4ProjectLib
 #endif
 
 #if VS2013
-                if (vcPro != null)
-                {
-                    vcPro.Save();
-                }
+                file = Update(this, file);
 #endif
 
+#region Add moc for each configuration
                 foreach (VCFileConfiguration config in (IVCCollection)file.FileConfigurations)
                 {
                     string name = ((VCCustomBuildTool)config.Tool).toolName;
@@ -1224,9 +1256,11 @@ namespace Digia.Qt4ProjectLib
                         tool.CommandLine = newCmdLine;
                     }
                 }
+#endregion
             }
             catch 
             {
+                file.ItemType = oldItemType;
                 throw new Qt4VSException(SR.GetString("QtProject_CannotAddMocStep", file.FullPath));
             }
         }
@@ -1584,6 +1618,7 @@ namespace Digia.Qt4ProjectLib
                         if (mocFile != null)
                             RemoveFileFromFilter(mocFile, Filters.GeneratedFiles());
                     }
+                    file.ItemType = "ClInclude";
                 } 
                 else 
                 {
@@ -2146,7 +2181,7 @@ namespace Digia.Qt4ProjectLib
         {
             try
             {
-                EnvDTE.Window solutionExplorer = dte.Windows.Item(Constants.vsWindowKindSolutionExplorer);
+                EnvDTE.Window solutionExplorer = dte.Windows.Item(EnvDTE.Constants.vsWindowKindSolutionExplorer);
                 if (solutionExplorer != null)
                 {
                     EnvDTE.UIHierarchy hierarchy = (EnvDTE.UIHierarchy)solutionExplorer.Object;
@@ -3594,7 +3629,7 @@ namespace Digia.Qt4ProjectLib
 
         public void CollapseFilter(string filterName)
         {
-            UIHierarchy solutionExplorer = (UIHierarchy)dte.Windows.Item(Constants.vsext_wk_SProjectWindow).Object;
+            UIHierarchy solutionExplorer = (UIHierarchy)dte.Windows.Item(EnvDTE.Constants.vsext_wk_SProjectWindow).Object;
             if (solutionExplorer.UIHierarchyItems.Count == 0)
                 return;
 
