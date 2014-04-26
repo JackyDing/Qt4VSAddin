@@ -76,7 +76,7 @@ namespace Digia.Qt4ProjectLib
         {
             QtVersionManager versionManager = QtVersionManager.The();
             string projectQtVersion = null;
-            if (HelperFunctions.IsQtProject(project))
+            if (HelperFunctions.IsQt4Project(project))
             {
                 projectQtVersion = versionManager.GetProjectQtVersion(project);
             }
@@ -600,7 +600,7 @@ namespace Digia.Qt4ProjectLib
                 return;
 
 
-            if (IsQtProject(project))
+            if (IsQt4Project(project))
             {
                 QtProject qtPro = QtProject.Create(project);
                 QtVersionManager vm = QtVersionManager.The(HelperFunctions.GetProjectPlatformName(project));
@@ -921,11 +921,11 @@ namespace Digia.Qt4ProjectLib
         }
 
         /// <summary>
-        /// Return true if the project is a Qt project, otherwise false.
+        /// Return true if the project is a Qt4 project, otherwise false.
         /// </summary>
         /// <param name="proj">project</param>
         /// <returns></returns>
-        public static bool IsQtProject(VCProject proj)
+        public static bool IsQt4Project(VCProject proj)
         {
             if (!IsQMakeProject(proj))
                 return false;
@@ -935,8 +935,76 @@ namespace Digia.Qt4ProjectLib
                 return false;
 
             foreach (string global in envPro.Globals.VariableNames as string[])
+            {
+                if (global.StartsWith("QtVersion") && envPro.Globals.get_VariablePersists(global))
+                    return true;
                 if (global.StartsWith("Qt4Version") && envPro.Globals.get_VariablePersists(global))
                     return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Return true if the project is a Qt5 project, otherwise false.
+        /// </summary>
+        /// <param name="proj">project</param>
+        /// <returns></returns>
+        public static bool IsQt5Project(VCProject proj)
+        {
+            if (!IsQMakeProject(proj))
+                return false;
+
+            EnvDTE.Project envPro = proj.Object as EnvDTE.Project;
+            if (envPro.Globals == null || envPro.Globals.VariableNames == null)
+                return false;
+
+            foreach (string global in envPro.Globals.VariableNames as string[])
+                if (global.StartsWith("Qt5Version") && envPro.Globals.get_VariablePersists(global))
+                    return true;
+            return false;
+        }
+
+        /// <summary>
+        /// Return true if the project is a Qt project, otherwise false.
+        /// </summary>
+        /// <param name="proj">project</param>
+        /// <returns></returns>
+        public static bool IsQtProject(VCProject proj)
+        {
+            return HelperFunctions.IsQt4Project(proj) || HelperFunctions.IsQt5Project(proj);
+        }
+
+        /// <summary>
+        /// Returns true if the specified project is a Qt4 Project.
+        /// </summary>
+        /// <param name="proj">project</param>
+        public static bool IsQt4Project(EnvDTE.Project proj)
+        {
+            try
+            {
+                if (proj != null && proj.Kind == "{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}")
+                {
+                    return HelperFunctions.IsQt4Project(proj.Object as VCProject);
+                }
+            }
+            catch { }
+            return false;
+        }
+
+        /// <summary>
+        /// Returns true if the specified project is a Qt5 Project.
+        /// </summary>
+        /// <param name="proj">project</param>
+        public static bool IsQt5Project(EnvDTE.Project proj)
+        {
+            try
+            {
+                if (proj != null && proj.Kind == "{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}")
+                {
+                    return HelperFunctions.IsQt5Project(proj.Object as VCProject);
+                }
+            }
+            catch { }
             return false;
         }
 
@@ -946,15 +1014,7 @@ namespace Digia.Qt4ProjectLib
         /// <param name="proj">project</param>
         public static bool IsQtProject(EnvDTE.Project proj)
         {
-            try
-            {
-                if (proj != null && proj.Kind == "{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}")
-                {
-                    return HelperFunctions.IsQtProject(proj.Object as VCProject);
-                }
-            }
-            catch { }
-            return false;
+            return HelperFunctions.IsQt4Project(proj) || HelperFunctions.IsQt5Project(proj);
         }
 
         public static bool IsVcProject(VCProject proj)
@@ -1537,7 +1597,7 @@ namespace Digia.Qt4ProjectLib
                         VCFilter filt = (VCFilter)selItem.ProjectItem.Object;
                         if (filt != null && filt.UniqueIdentifier != null
                             && filt.UniqueIdentifier.ToLower() == filter.UniqueIdentifier.ToLower()
-                            && HelperFunctions.IsQtProject(GetSelectedQtProject(dteObject)))
+                            && HelperFunctions.IsQt4Project(GetSelectedQtProject(dteObject)))
                             return true;
                     }
                 }
@@ -1615,7 +1675,7 @@ namespace Digia.Qt4ProjectLib
                 if ((pro = GetSingleProjectInSolution(dteObject)) == null)
                     pro = GetActiveDocumentProject(dteObject);
 
-            return HelperFunctions.IsQtProject(pro) ? pro : null;
+            return HelperFunctions.IsQt4Project(pro) ? pro : null;
         }
 
         public static VCFile GetSelectedFile(EnvDTE.DTE dteObject)

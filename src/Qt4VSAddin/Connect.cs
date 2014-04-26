@@ -199,7 +199,7 @@ namespace Qt4VSAddin
                         (commandName == Res.lreleaseProjectFullCommand))
                     {
                         Project prj = HelperFunctions.GetSelectedProject(_applicationObject);
-                        if (prj != null && HelperFunctions.IsQtProject(prj))
+                        if (prj != null && HelperFunctions.IsQt4Project(prj))
                             status = (vsCommandStatus)vsCommandStatus.vsCommandStatusSupported
                                                     | vsCommandStatus.vsCommandStatusEnabled;
                         else
@@ -210,7 +210,7 @@ namespace Qt4VSAddin
                         Project prj = HelperFunctions.GetSelectedProject(_applicationObject);
                         if (prj == null)
                             status = vsCommandStatus.vsCommandStatusInvisible;
-                        else if (HelperFunctions.IsQtProject(prj))
+                        else if (HelperFunctions.IsQt4Project(prj))
                             status = (vsCommandStatus)vsCommandStatus.vsCommandStatusSupported
                                                     | vsCommandStatus.vsCommandStatusEnabled;
                         else if (HelperFunctions.IsQMakeProject(prj))
@@ -221,7 +221,7 @@ namespace Qt4VSAddin
                     else if (commandName == Res.ChangeProjectQtVersionFullCommand)
                     {
                         Project prj = HelperFunctions.GetSelectedProject(_applicationObject);
-                        if (prj == null || HelperFunctions.IsQtProject(prj))
+                        if (prj == null || HelperFunctions.IsQt4Project(prj))
                             status = vsCommandStatus.vsCommandStatusInvisible;
                         else if (HelperFunctions.IsQMakeProject(prj))
                             status = (vsCommandStatus)vsCommandStatus.vsCommandStatusSupported
@@ -234,7 +234,7 @@ namespace Qt4VSAddin
                         Project prj = HelperFunctions.GetSelectedProject(_applicationObject);
                         if (prj == null)
                             status = vsCommandStatus.vsCommandStatusInvisible;
-                        else if (HelperFunctions.IsQtProject(prj))
+                        else if (HelperFunctions.IsQt4Project(prj))
                             status = (vsCommandStatus)vsCommandStatus.vsCommandStatusSupported
                                                     | vsCommandStatus.vsCommandStatusEnabled;
                         else if (HelperFunctions.IsQMakeProject(prj))
@@ -245,7 +245,7 @@ namespace Qt4VSAddin
                     else if (commandName == Res.ConvertToQtFullCommand)
                     {
                         Project prj = HelperFunctions.GetSelectedProject(_applicationObject);
-                        if (prj == null || HelperFunctions.IsQtProject(prj))
+                        if (prj == null || HelperFunctions.IsQt4Project(prj))
                             status = vsCommandStatus.vsCommandStatusInvisible;
                         else if (HelperFunctions.IsQMakeProject(prj))
                             status = (vsCommandStatus)vsCommandStatus.vsCommandStatusSupported
@@ -270,7 +270,7 @@ namespace Qt4VSAddin
                         commandName == Res.CommandBarName + ".Connect.lrelease")
                     {
                         Project prj = HelperFunctions.GetSelectedProject(_applicationObject);
-                        if (prj == null || !HelperFunctions.IsQtProject(prj) ||
+                        if (prj == null || !HelperFunctions.IsQt4Project(prj) ||
                             _applicationObject.SelectedItems.Count == 0)
                         {
                             status = vsCommandStatus.vsCommandStatusInvisible;
@@ -370,7 +370,7 @@ namespace Qt4VSAddin
 
                                     foreach (Project project in HelperFunctions.ProjectsInSolution(_applicationObject))
                                     {
-                                        if (HelperFunctions.IsQtProject(project))
+                                        if (HelperFunctions.IsQt4Project(project))
                                         {
                                             string OldQtVersion = vManager.GetProjectQtVersion(project, currentPlatform);
                                             if (OldQtVersion == null)

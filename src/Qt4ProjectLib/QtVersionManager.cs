@@ -202,7 +202,9 @@ namespace Digia.Qt4ProjectLib
                 return false;
             string platform = project.ConfigurationManager.ActiveConfiguration.PlatformName;
             if (project.Globals.get_VariablePersists("Qt4Version " + platform)
-                || project.Globals.get_VariablePersists("Qt4Version"))
+                || project.Globals.get_VariablePersists("Qt4Version")
+                || project.Globals.get_VariablePersists("QtVersion " + platform)
+                || project.Globals.get_VariablePersists("QtVersion"))
                 return true;
             else
                 return false;
@@ -235,6 +237,8 @@ namespace Digia.Qt4ProjectLib
                 RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE\\" + regVersionPath, false);
                 if (key != null)
                     version = (string)key.GetValue("WinCEQt4Version");
+                if (version == null)
+                    version = (string)key.GetValue("WinCEQtVersion");
             }
             catch
             {
@@ -269,6 +273,13 @@ namespace Digia.Qt4ProjectLib
                 return VerifyIfQtVersionExists(version) ? version : null;
             }
 
+            if (version == null && project.Globals.get_VariablePersists("QtVersion"))
+            {
+                version = (string)project.Globals["QtVersion"];
+                ExpandEnvironmentVariablesInQtVersion(ref version);
+                return VerifyIfQtVersionExists(version) ? version : null;
+            }
+
             if (version == null)
                 version = GetSolutionQtVersion(project.DTE.Solution);
 
@@ -296,6 +307,12 @@ namespace Digia.Qt4ProjectLib
             if (solution.Globals.get_VariableExists("Qt4Version"))
             {
                 string version = (string)solution.Globals["Qt4Version"];
+                return VerifyIfQtVersionExists(version) ? version : null;
+            }
+
+            if (solution.Globals.get_VariableExists("QtVersion"))
+            {
+                string version = (string)solution.Globals["QtVersion"];
                 return VerifyIfQtVersionExists(version) ? version : null;
             }
 
@@ -341,6 +358,7 @@ namespace Digia.Qt4ProjectLib
             if (key == null)
                 return false;
             key.SetValue("WinCEQt4Version", version);
+            key.SetValue("WinCE4Version", version);
             return true;
         }
 
@@ -358,6 +376,11 @@ namespace Digia.Qt4ProjectLib
                 project.Globals[key] = version;
             if (!project.Globals.get_VariablePersists(key))
                 project.Globals.set_VariablePersists(key, true);
+            key = "QtVersion " + platform;
+            if (!project.Globals.get_VariableExists(key) || project.Globals[key].ToString() != version)
+                project.Globals[key] = version;
+            if (!project.Globals.get_VariablePersists(key))
+                project.Globals.set_VariablePersists(key, true);
             return true;
         }
 
@@ -368,6 +391,9 @@ namespace Digia.Qt4ProjectLib
             solution.Globals["Qt4Version"] = version;
             if (!solution.Globals.get_VariablePersists("Qt4Version"))
                 solution.Globals.set_VariablePersists("Qt4Version", true);
+            solution.Globals["QtVersion"] = version;
+            if (!solution.Globals.get_VariablePersists("QtVersion"))
+                solution.Globals.set_VariablePersists("QtVersion", true);
             return true;
         }
 

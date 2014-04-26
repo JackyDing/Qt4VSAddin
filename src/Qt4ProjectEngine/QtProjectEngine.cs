@@ -165,10 +165,14 @@ namespace Digia.Qt4ProjectLib
             QtVSIPSettings.SaveLinguistOptions(pro, null);
             QtVSIPSettings.SaveAssistantOptions(pro, null);
 
-            versionManager.SaveProjectQtVersion(pro, qtVersion);
+            foreach (string kPlatformName in (Array)pro.ConfigurationManager.PlatformNames)
+            {
+                versionManager.SaveProjectQtVersion(pro, "$(DefaultQtVersion)", kPlatformName);
+            }
 
             qtPro.MarkAsQtProject("v1.0");
             qtPro.AddDirectories();
+            qtPro.SelectSolutionPlatform(platformName);
 
             if (!string.IsNullOrEmpty(slnName) && (exclusive == true))
                 newSolution.SaveAs(solutionPath + "\\" + slnName + ".sln");

@@ -308,7 +308,7 @@ namespace Digia.Qt4ProjectLib
                 try
                 {
                     // only add qt projects
-                    if (HelperFunctions.IsQtProject(proj))
+                    if (HelperFunctions.IsQt4Project(proj))
                     {
                         content = CreateProFileContent(proj);
                         prosln.ProFiles.Add(content);
@@ -332,7 +332,7 @@ namespace Digia.Qt4ProjectLib
             foreach (ProjectItem pi in solutionFolder.ProjectItems)
             {
                 Project containedProject = pi.Object as Project;
-                if (HelperFunctions.IsQtProject(containedProject))
+                if (HelperFunctions.IsQt4Project(containedProject))
                 {
                     ProFileContent content = CreateProFileContent(containedProject);
                     sln.ProFiles.Add(content);
@@ -1183,7 +1183,7 @@ namespace Digia.Qt4ProjectLib
         {
             VCProject vcproj;
 
-            if (HelperFunctions.IsQtProject(proj))
+            if (HelperFunctions.IsQt4Project(proj))
             {
                 try
                 {
@@ -1256,7 +1256,7 @@ namespace Digia.Qt4ProjectLib
         {
             VCProject vcproj;
 
-            if (HelperFunctions.IsQtProject(proj))
+            if (HelperFunctions.IsQt4Project(proj))
             {
                 try
                 {
